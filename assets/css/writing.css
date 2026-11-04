@@ -1,0 +1,93 @@
+/* 写作列表：分类小标签、指上去标题划一道荧光、草稿单独收在最下面。只给 writing.html 用。 */
+
+.page-writing .post-count {
+  margin: 0 0 6px;
+  color: var(--ink-3);
+  font: italic 13px/1.6 var(--font-en);
+  letter-spacing: .06em;
+}
+
+.page-writing .post-list .post-item {
+  padding: 28px 4px;
+  color: inherit;
+  text-decoration: none;
+}
+/* 指上去不再左右挪、不再铺底色，只让标题亮一下 */
+.page-writing .post-list .post-item:hover {
+  transform: none;
+  background: transparent;
+  padding-inline: 4px;
+  border-radius: 0;
+}
+
+.page-writing .post-tag {
+  display: table;            /* 自成一行、宽度贴着字，标题才会落在它下面 */
+  margin-bottom: 6px;
+  padding: 1px 9px;
+  border: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
+  border-radius: 999px;
+  color: var(--ink-3);
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  letter-spacing: .08em;
+}
+
+/* 标题下面一道荧光，指上去时从左往右划出来 */
+.page-writing .post-list .post-title {
+  display: inline;
+  background: linear-gradient(transparent 62%, var(--lilac-soft) 62%, var(--lilac-soft) 92%, transparent 92%) no-repeat 0 0 / 0% 100%;
+  transition: background-size .45s var(--ease);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.page-writing .post-list .post-item:hover .post-title,
+.page-writing .post-list .post-item:focus-visible .post-title { background-size: 100% 100%; }
+.page-writing .post-list .post-sum { margin-top: 8px; }
+
+.page-writing .post-arrow {
+  display: inline-block;
+  margin-left: 8px;
+  color: var(--ink-2);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity .25s, transform .25s var(--ease);
+}
+.page-writing .post-item:hover .post-arrow,
+.page-writing .post-item:focus-visible .post-arrow { opacity: 1; transform: none; }
+.page-writing .post-item:focus-visible { outline: 2px solid var(--sky); outline-offset: 4px; border-radius: 6px; }
+
+/* ---------- 还在写的：抽屉里的草稿纸 ---------- */
+.page-writing .drafts {
+  margin-top: clamp(48px, 7vw, 72px);
+  padding-top: 26px;
+  border-top: 1px dashed var(--line);
+}
+.page-writing .drafts-head {
+  margin: 0 0 14px;
+  color: var(--ink-3);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  letter-spacing: .08em;
+}
+.page-writing .draft {
+  padding: 12px 0 12px 16px;
+  border-left: 2px solid color-mix(in srgb, var(--pink) 35%, transparent);
+}
+.page-writing .draft + .draft { margin-top: 10px; }
+.page-writing .draft-title {
+  margin: 0 0 4px;
+  color: var(--ink-2);
+  font-size: 16px;
+  font-weight: 600;
+}
+.page-writing .draft-sum {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 14.5px;
+  line-height: 1.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-writing .post-list .post-title,
+  .page-writing .post-arrow { transition: none; }
+}

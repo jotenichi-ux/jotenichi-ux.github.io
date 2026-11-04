@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>花园 · 世界正在展开</title>
+<meta name="description" content="走之前，在我的花园里种一朵花吧。">
+<meta name="theme-color" content="#fffdf8">
+<link rel="preload" href="assets/fonts/noto-serif-sc-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/noto-serif-sc-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=20261103z1">
+<link rel="stylesheet" href="assets/css/style.css?v=20261104d">
+<link rel="stylesheet" href="assets/css/scrapbook.css?v=20261104i">
+<link rel="stylesheet" href="assets/css/motion.css?v=20261103z">
+<link rel="stylesheet" href="assets/css/garden.css?v=20261104c">
+<link rel="stylesheet" href="assets/css/breaks.css?v=20261103z">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("beata.theme");
+      /* 没手动选过就按本地时间：7:00-19:00 白天，其余算夜里 */
+      if (t !== "night" && t !== "day") {
+        var h = new Date().getHours();
+        t = h >= 7 && h < 19 ? "day" : "night";
+      }
+      if (t === "night") document.documentElement.setAttribute("data-theme", "night");
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body class="page-garden">
+
+<header class="site-head" id="siteHead">
+  <div class="wrap head-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-txt">世界正在展开</span>
+      <span class="brand-sub">So Am I.</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于</a>
+      <a href="projects.html">足迹</a>
+      <a href="fragments.html">碎片</a>
+      <a href="writing.html">写作</a>
+      <a href="garden.html" aria-current="page">花园</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="切换到夜间模式" title="戳戳小猫，天就黑了">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6.5 9.5 6 5.6l3.3 1.8a7.4 7.4 0 0 1 5.4 0L18 5.6l-.5 3.9a5.4 5.4 0 1 1-11 0Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="9.4" cy="11.6" r="1" fill="currentColor"/>
+          <circle cx="14.6" cy="11.6" r="1" fill="currentColor"/>
+        </svg>
+      </button>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-label="打开菜单">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <path d="M3 5h12M3 9h12M3 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="sec" style="padding-top:clamp(48px,7vh,80px)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-label">05 / THE GARDEN</p>
+      <h1 class="sec-title">
+        走之前，来我的<span class="mark mark--grass">花园坐坐</span>
+      </h1>
+      <p class="page-en">A Little Place to Stay</p>
+      <p class="sec-sub">
+        哎呀，居然已经逛到这里啦！谢谢你愿意花一点时间，看看我的小世界。<br>
+        以后这里应该还会慢慢长出很多新东西。可能是照片、故事，也可能是我突然<span class="nb">冒出来</span>的奇怪点子。不过今天就先到这里吧。<br>
+        要不要留下一朵小花？就当作我们在这里见过面啦。
+      </p>
+    </div>
+
+    <!-- ============ 草地 ============ -->
+    <div class="meadow-wrap reveal">
+      <div class="meadow" id="meadow">
+
+        <!-- 布景：太阳/月亮、远山、云、蝴蝶、小木牌。都不挡点击 -->
+        <div class="meadow-scenery" aria-hidden="true">
+          <span class="scenery-sun only-day"></span>
+          <span class="scenery-moon only-night"></span>
+          <span class="scenery-stars only-night">
+            <i style="left:12%; top:13%"></i>
+            <i style="left:29%; top:24%; animation-delay:-1.2s"></i>
+            <i style="left:45%; top:9%; animation-delay:-2.6s"></i>
+            <i style="left:61%; top:20%; animation-delay:-.6s"></i>
+            <i style="left:76%; top:10%; animation-delay:-3.4s"></i>
+            <i style="left:88%; top:27%; animation-delay:-1.9s"></i>
+            <i style="left:21%; top:33%; animation-delay:-4.1s"></i>
+          </span>
+          <span class="scenery-cloud scenery-cloud--1 only-day"></span>
+          <span class="scenery-cloud scenery-cloud--2 only-day"></span>
+          <span class="scenery-cloud scenery-cloud--3 only-day"></span>
+
+          <span class="scenery-hill scenery-hill--far"></span>
+          <span class="scenery-hill scenery-hill--near"></span>
+          <span class="scenery-hill scenery-hill--small"></span>
+
+          <svg class="scenery-fly scenery-fly--1 only-day" viewBox="0 0 30 24">
+            <path d="M15 13 C10 3 2.5 0 2.5 6 C2.5 11 9 14 15 13 Z" fill="currentColor" opacity=".9"/>
+            <path d="M15 13 C20 3 27.5 0 27.5 6 C27.5 11 21 14 15 13 Z" fill="currentColor" opacity=".65"/>
+            <path d="M15 8 V20" stroke="#7A5230" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+            <path d="M15 8 C13 4 11.5 3 10 2.4 M15 8 C17 4 18.5 3 20 2.4" stroke="#7A5230" stroke-width="1" stroke-linecap="round" opacity=".45" fill="none"/>
+          </svg>
+          <svg class="scenery-fly scenery-fly--2 only-day" viewBox="0 0 30 24">
+            <path d="M15 13 C10 3 2.5 0 2.5 6 C2.5 11 9 14 15 13 Z" fill="currentColor" opacity=".9"/>
+            <path d="M15 13 C20 3 27.5 0 27.5 6 C27.5 11 21 14 15 13 Z" fill="currentColor" opacity=".65"/>
+            <path d="M15 8 V20" stroke="#7A5230" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+            <path d="M15 8 C13 4 11.5 3 10 2.4 M15 8 C17 4 18.5 3 20 2.4" stroke="#7A5230" stroke-width="1" stroke-linecap="round" opacity=".45" fill="none"/>
+          </svg>
+
+          <span class="scenery-stone scenery-stone--1"></span>
+          <span class="scenery-stone scenery-stone--2"></span>
+          <span class="scenery-stone scenery-stone--3"></span>
+          <span class="scenery-sign">慢慢长</span>
+        </div>
+
+        <!-- 角落的小提示：也是个按钮，键盘按回车就能种 -->
+        <button class="meadow-hint" id="meadowHint" type="button">
+          <span class="meadow-hint-empty">这里还没有花，你可以是第一个</span>
+          <span class="meadow-hint-main">点一下草地，种一朵 <span aria-hidden="true">🌱</span></span>
+          <span class="meadow-hint-count">现在有 <b id="flowerCount">0</b> 朵</span>
+        </button>
+
+        <!-- 点草地后，先在那个位置冒出一棵小芽 -->
+        <span class="plant-sprout" id="plantSprout" hidden aria-hidden="true"></span>
+
+        <!-- 萤火虫，天黑以后才亮 -->
+        <div class="fireflies" aria-hidden="true">
+          <i class="firefly" style="left:12%; top:38%; animation-delay:0s"></i>
+          <i class="firefly" style="left:26%; top:62%; animation-delay:-2.4s"></i>
+          <i class="firefly" style="left:41%; top:30%; animation-delay:-5.1s"></i>
+          <i class="firefly" style="left:58%; top:70%; animation-delay:-1.2s"></i>
+          <i class="firefly" style="left:69%; top:44%; animation-delay:-7.3s"></i>
+          <i class="firefly" style="left:83%; top:58%; animation-delay:-3.6s"></i>
+          <i class="firefly" style="left:92%; top:32%; animation-delay:-6.2s"></i>
+          <i class="firefly" style="left:34%; top:84%; animation-delay:-4.4s"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- 还没接数据库时如实说一声；接上以后脚本会把它藏起来 -->
+    <p class="garden-local-note" id="gardenLocalNote">现在种的花只有你自己看得到，等花园连上网，大家就能互相看见啦。</p>
+
+    <!-- 种花卡片：点草地后出现在小芽旁边；手机上从底部滑出来 -->
+    <div class="plant-sheet" id="plantSheet" role="dialog" aria-labelledby="plantSheetTitle" hidden>
+      <p class="plant-sheet-title" id="plantSheetTitle">在这里种一朵？</p>
+      <div class="flower-picker" id="flowerPicker" role="group" aria-label="选一种花"></div>
+      <div class="field">
+        <label for="msgInput">想说的话</label>
+        <textarea id="msgInput" rows="2" maxlength="50" placeholder="比如：今天的天空很好看。"></textarea>
+        <span class="counter" id="counter">0 / 50</span>
+      </div>
+      <div class="field">
+        <label for="nickInput">你的名字（可以不填）</label>
+        <input id="nickInput" type="text" maxlength="16" placeholder="一个路过的朋友">
+      </div>
+      <div class="plant-sheet-actions">
+        <button class="btn btn--ghost btn--sm" id="plantCancel" type="button">算啦</button>
+        <button class="btn btn--primary btn--sm" id="plantBtn" type="button">种下 <span aria-hidden="true">✿</span></button>
+      </div>
+    </div>
+
+    <!-- 点一朵花弹出的小纸条 -->
+    <div class="flower-note" id="flowerNote" role="status" hidden>
+      <p class="flower-note-msg"></p>
+      <p class="flower-note-who"></p>
+      <p class="flower-note-mine" hidden>这是你种的 ✿</p>
+      <button class="flower-note-remove" type="button" hidden>拔掉这朵</button>
+    </div>
+
+    <p class="reveal garden-thanks">
+      谢谢你在这里留了一点痕迹。
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-lead">
+        <p class="sec-label foot-kicker">BEFORE YOU GO ✿</p>
+        <p class="foot-big">下次见面的时候，<span class="nb">希望</span>又有新的故事啦！</p>
+        <p class="foot-note">谢谢你来过我的小宇宙。不知道下次见面的时候，这里又会多出些什么呢？</p>
+        <p class="foot-en foot-en--sign">The world is unfolding, and so am I.</p>
+        <p class="foot-cta"><a class="btn btn--primary" href="index.html">回到首页 <span aria-hidden="true">↗</span></a></p>
+      </div>
+      <div class="foot-secondary">
+        <span class="foot-secondary-label">也可以逛逛</span>
+        <a class="foot-link" href="about.html">关于我</a>
+        <a class="foot-link" href="projects.html">我的足迹</a>
+        <a class="foot-link" href="writing.html">我的文字</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Made with ♡ by Beata</span>
+      <a class="foot-hint" href="#siteHead">回到故事开头 ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js?v=20261104a"></script>
+<script src="assets/js/motion.js"></script>
+<script src="assets/js/garden-config.js?v=20261104b"></script>
+<script src="assets/js/garden.js?v=20261104c"></script>
+</body>
+</html>

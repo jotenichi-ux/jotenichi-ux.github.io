@@ -1,0 +1,46 @@
+/* ===========================================================
+   换行断句 / line-break
+   只处理「在哪里断行」，不改字号体系、不改配色、不改结构。
+   依赖顺序：需在 style.css / scrapbook.css / readability.css 之后加载。
+   =========================================================== */
+
+/* 1. 标题：多行时由浏览器均衡分配宽度，避免末行只剩一两个字 */
+h1,
+h2,
+h3,
+.sec-title,
+.post-title,
+.tl-what,
+.foot-big,
+.letter-title {
+  text-wrap: balance;
+}
+
+/* 2. 说明性正文：最后一行不留孤字，也不把句末标点顶到新行开头 */
+.sec-sub,
+.foot-note,
+.hero-intro p,
+.section-whisper,
+.post-sum,
+.sec-whisper {
+  text-wrap: pretty;
+}
+
+/* 3. 不许被拆开的词组（中文没有连字符，只能显式禁止断行） */
+.nb {
+  white-space: nowrap;
+}
+
+/* 4. 首屏大标题「世界正在展开」五字一句：
+      平板宽度下原本被挤成「世界正 / 在展开」，
+      改成整体不换行，并在这段区间把字号收到放得下。 */
+.hero-title {
+  white-space: nowrap;
+}
+
+@media (min-width: 761px) and (max-width: 980px) {
+  .hero-title {
+    font-size: clamp(40px, 5.7vw, 48px);
+    letter-spacing: 0.01em;
+  }
+}

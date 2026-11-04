@@ -1,0 +1,72 @@
+/* 文章页共用：段落节奏、分隔符、上一篇 / 下一篇。五篇文章都引用。阅读进度条在 motion.js 里。 */
+
+/* ---------- 段落节奏：普通段落之间留一口气，短句连读时挨近一点 ---------- */
+body.rb.page-article .article-body p {
+  margin: 0 0 1.15em;
+}
+body.rb.page-article .article-body p + p { margin-top: 0; }
+body.rb.page-article .article-body p.short { margin-bottom: .4em; }
+/* 一串短句结束后，下一段和它拉开一点，像说完一句停了停 */
+body.rb.page-article .article-body p.short + p:not(.short) { margin-top: .75em; }
+
+/* ---------- 分隔符：✿ ✿ ✿，前后多留白，读到这里自然停一下 ---------- */
+body.rb.page-article .article-body .beat {
+  margin: 3.2em auto;
+  text-align: center;
+  color: var(--pink);
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: .5em;
+  text-indent: .5em;   /* 抵掉最后一朵花后面多出来的字距，三朵才真的居中 */
+}
+
+/* 引用的一句原话 */
+body.rb.page-article .article-body .quote-line {
+  margin: 1.6em 0;
+  font-style: normal;
+  color: var(--ink);
+}
+
+/* 北辰那篇的 WEEK 小节：和分隔符一样多留点白 */
+body.rb.page-article .article-body h2 { margin-top: 2.6em; }
+
+/* ---------- 文末：上一篇 / 下一篇 ---------- */
+.article-pager {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 40px 0 8px;
+  text-align: left;
+}
+.pager-card {
+  display: block;
+  padding: 16px 18px;
+  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+  border-radius: 12px;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color .2s, background-color .2s;
+}
+.pager-card:hover { border-color: var(--sky); background: var(--sky-soft); }
+.pager-card:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; }
+.pager-card--next { text-align: right; }
+.pager-card--next:only-child { grid-column: 1 / -1; }
+.pager-dir {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink-3);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: .06em;
+}
+.pager-title {
+  display: block;
+  color: var(--ink);
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+
+@media (max-width: 520px) {
+  body.rb.page-article .article-body .beat { margin: 2.6em auto; }
+  .pager-card--next { text-align: left; }
+}

@@ -1,0 +1,474 @@
+/* ==========================================================================
+   Beata · 世界正在展开  —  花园页专用排版
+   --------------------------------------------------------------------------
+   为什么单独一个文件：
+   花园页比别的页面多出草地、选花器、表单、说明卡，原来的字号是按
+   「杂志小字」调的 —— 在 13–15px 上很好看，但真要读一大段话就费眼睛。
+   这里只针对 body.page-garden 做局部覆盖，其它页面完全不受影响。
+
+   加载顺序：style.css → scrapbook.css → motion.css → garden.css
+   文件结构：
+   01. 本页用色（比全站 --ink-2 / --ink-3 更深一档）
+   02. 标题层级
+   03. 正文与引言
+   04. 草地提示
+   05. 卡片标题与说明
+   06. 表单
+   07. 按钮与计数
+   08. 花朵 / 提示气泡
+   09. 页脚
+   10. 窄屏（≤760px / ≤560px）
+   ========================================================================== */
+
+/* ==========================================================================
+   01. 本页用色
+   全站的 --ink-3(#8a8fa3) 在奶白底上只有 3.2:1，做正文偏浅；
+   这里换成 #62677b（约 5.7:1），--g-body #44475a 约 8.9:1，都在 AA 之上。
+   ========================================================================== */
+
+body.page-garden {
+  --g-title: #303448;   /* 标题：深墨蓝 */
+  --g-body: #44475a;    /* 正文：深灰蓝 */
+  --g-muted: #62677b;   /* 次要说明：中性灰蓝，不用更浅的 */
+  --g-placeholder: #82879b;
+}
+
+[data-theme="night"] body.page-garden {
+  --g-title: #f3f5fc;
+  --g-body: #d6daea;
+  --g-muted: #b4b9ce;
+  --g-placeholder: #9398b0;
+}
+
+/* ==========================================================================
+   02. 标题层级
+   桌面 46px / 行高 1.25 / 600；平板随宽度收；手机 31px 上下。
+   ========================================================================== */
+
+.page-garden h1.sec-title {
+  max-width: 15em;
+  font-size: clamp(32px, 4.6vw, 46px);
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  color: var(--g-title);
+  text-wrap: balance;
+}
+
+/* 05 / THE GARDEN —— 真正的英文装饰标签，缩到 14px 并收紧字距 */
+.page-garden .sec-head > .sec-label {
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--g-muted);
+}
+
+/* A Little Place to Stay —— 标题下的英文副题，跟着正文一档，别做成灰点 */
+.page-garden .page-en {
+  margin: 12px 0 16px;
+  font-size: 17px;
+  letter-spacing: 0.03em;
+  color: var(--g-muted);
+}
+
+/* ==========================================================================
+   03. 正文与引言
+   行宽收在 640px（中文一行约 35 字），行高 1.8。
+   ========================================================================== */
+
+.page-garden .sec-sub {
+  max-width: 640px;
+  margin-top: 18px;
+  color: var(--g-body);
+  font-size: 18px;
+  line-height: 1.8;
+  text-wrap: pretty;
+}
+
+/* ==========================================================================
+   04. 草地角落的小提示（也是「种一朵」的按钮）
+   ========================================================================== */
+
+.page-garden .meadow-hint {
+  position: absolute;
+  inset: auto 16px 16px auto;
+  z-index: 20;
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  padding: 10px 16px;
+  border: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--card) 82%, transparent);
+  backdrop-filter: blur(6px);
+  color: var(--g-body);
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  text-align: right;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: border-color .2s, background-color .2s;
+}
+.page-garden .meadow-hint:hover { border-color: var(--grass); }
+.page-garden .meadow-hint:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; }
+.page-garden .meadow-hint-main { font-weight: 600; color: var(--g-title); }
+.page-garden .meadow-hint-count { color: var(--g-muted); font-size: 13px; }
+.page-garden .meadow-hint-count b { color: var(--g-title); }
+.page-garden .meadow-hint-empty { color: var(--g-muted); font-size: 13px; }
+.page-garden .meadow-hint.has-flowers .meadow-hint-empty { display: none; }
+
+/* 没接数据库时的一句实话 */
+.page-garden .garden-local-note {
+  margin: 12px 4px 0;
+  color: var(--g-muted);
+  font-size: 13.5px;
+}
+
+/* 页尾那句悄悄话 */
+.page-garden .garden-thanks {
+  margin: 34px 0 0;
+  color: var(--g-muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   06. 表单
+   标签 16px 加粗，输入框 17px（低于 16px 时 iOS 会自动放大页面）。
+   ========================================================================== */
+
+.page-garden .field {
+  gap: 8px;
+}
+
+.page-garden .field label {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+  text-transform: none;
+  color: var(--g-body);
+}
+
+.page-garden .field input,
+.page-garden .field textarea {
+  padding: 14px 16px;
+  color: var(--g-title);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.page-garden .field textarea {
+  min-height: 108px;
+}
+
+.page-garden .field input::placeholder,
+.page-garden .field textarea::placeholder {
+  color: var(--g-placeholder);
+  opacity: 1;
+}
+
+.page-garden .counter {
+  font-size: 14px;
+  color: var(--g-muted);
+}
+
+/* ==========================================================================
+   07. 按钮与计数
+   主按钮 16.5px / 高 48px，次要按钮也保持在 44px 以上，手指点得中。
+   ========================================================================== */
+
+.page-garden .btn {
+  min-height: 48px;
+  padding: 13px 28px;
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.page-garden .btn--sm {
+  min-height: 44px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   08. 花朵名 / 悬停气泡
+   ========================================================================== */
+
+.page-garden .flower-name {
+  color: var(--g-muted);
+  font-size: 13.5px;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+}
+
+.page-garden .flower-opt.is-picked .flower-name {
+  color: var(--g-title);
+  font-weight: 600;
+}
+
+.page-garden .flower-tip {
+  color: var(--g-title);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.page-garden .flower-tip b {
+  color: var(--g-muted);
+  font-size: 13px;
+}
+
+.page-garden .toast {
+  font-size: 15.5px;
+}
+
+/* ==========================================================================
+   09. 页脚
+   只在花园页把辅助字号提一档；页脚结构与其它页面保持一致。
+   ========================================================================== */
+
+.page-garden .foot-note {
+  font-size: 16.5px;
+  line-height: 1.8;
+}
+
+.page-garden .foot-secondary-label {
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--g-muted);
+}
+
+.page-garden .foot-link {
+  font-size: 16px;
+}
+
+.page-garden .foot-en--sign {
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: var(--g-muted);
+}
+
+.page-garden .foot-bottom {
+  font-size: 13.5px;
+}
+
+/* ==========================================================================
+   10. 窄屏
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  .page-garden h1.sec-title {
+    max-width: none;
+    font-size: clamp(30px, 7.7vw, 34px);
+    line-height: 1.3;
+  }
+
+  .page-garden .page-en {
+    margin: 10px 0 14px;
+    font-size: 15.5px;
+  }
+
+  .page-garden .sec-sub {
+    max-width: none;
+    margin-top: 16px;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  .page-garden .meadow-hint {
+    inset: auto 10px 10px auto;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .page-garden .btn {
+    min-height: 50px;
+  }
+
+  .page-garden .foot-note {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-garden .garden-thanks {
+    margin-top: 28px;
+  }
+}
+
+/* ==========================================================================
+   11. 种花：小芽、种花卡片、小纸条、「谢谢你来过」
+   ========================================================================== */
+
+/* 花现在是按钮（键盘能点、读屏能读），去掉按钮自带的样子 */
+.page-garden .flower {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+}
+.page-garden .flower:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; border-radius: 8px; }
+
+/* 天空不能种，草地上的光标换成小手 */
+.page-garden .meadow { cursor: pointer; }
+
+/* 点下去的地方先冒一棵小芽 */
+.page-garden .plant-sprout {
+  position: absolute;
+  z-index: 15;
+  width: 26px;
+  height: 30px;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 30'%3E%3Cpath d='M13 30 V14' stroke='%237FB86A' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M13 16 C6 16 3 10 4 5 C10 5 13 10 13 16 Z' fill='%239BE3A0'/%3E%3Cpath d='M13 13 C19 13 23 8 22 3 C16 3 13 8 13 13 Z' fill='%238FD08E'/%3E%3C/svg%3E") no-repeat center bottom / contain;
+  animation: sprout-pop .45s var(--ease) both, sprout-bob 1.8s ease-in-out .45s infinite;
+}
+@keyframes sprout-pop { from { transform: translate(-50%, -100%) scale(0); } to { transform: translate(-50%, -100%) scale(1); } }
+@keyframes sprout-bob { 0%, 100% { transform: translate(-50%, -100%) rotate(-4deg); } 50% { transform: translate(-50%, -100%) rotate(4deg); } }
+
+/* 种花卡片：宽屏贴在小芽旁边 */
+.page-garden .plant-sheet {
+  position: fixed;
+  z-index: 120;
+  width: min(340px, calc(100vw - 24px));
+  display: grid;
+  gap: 12px;
+  padding: 18px 18px 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(6px) scale(.98);
+  transition: opacity .22s var(--ease), transform .22s var(--ease);
+}
+.page-garden .plant-sheet[hidden] { display: none; }
+.page-garden .plant-sheet.is-open { opacity: 1; transform: none; }
+.page-garden .plant-sheet-title {
+  margin: 0;
+  color: var(--g-title);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 卡片里的选花器：一排小图标，放不下就横着滑 */
+.page-garden .plant-sheet .flower-picker {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  margin: 0 -4px;
+  padding: 2px 4px 6px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.page-garden .plant-sheet .flower-opt { flex: none; width: 50px; height: 64px; border-radius: 12px; }
+.page-garden .plant-sheet .flower-opt svg { width: 30px; height: 42px; }
+.page-garden .plant-sheet .flower-name { font-size: 11.5px; }
+.page-garden .plant-sheet .flower-opt:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+
+.page-garden .plant-sheet .field { gap: 4px; }
+.page-garden .plant-sheet .field label { font-size: 13.5px; }
+.page-garden .plant-sheet .field input,
+.page-garden .plant-sheet .field textarea { padding: 9px 12px; font-size: 16px; line-height: 1.6; }
+.page-garden .plant-sheet .field textarea { min-height: 0; resize: none; }
+.page-garden .plant-sheet .counter { font-size: 12px; }
+
+.page-garden .plant-sheet-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.page-garden .plant-sheet-actions .btn { min-height: 40px; padding: 8px 18px; font-size: 15px; }
+.page-garden .plant-sheet-actions .btn[disabled] { opacity: .6; cursor: wait; }
+
+/* 窄屏：从屏幕底部滑出来 */
+@media (max-width: 640px) {
+  .page-garden .plant-sheet {
+    left: 0 !important;
+    right: 0;
+    top: auto !important;
+    bottom: 0;
+    width: auto;
+    border-radius: 20px 20px 0 0;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+    transform: translateY(24px);
+  }
+}
+
+/* 点花弹出的小纸条 */
+.page-garden .flower-note {
+  position: fixed;
+  z-index: 110;
+  width: max-content;
+  max-width: min(260px, calc(100vw - 24px));
+  padding: 12px 15px 11px;
+  border: 1px solid var(--line);
+  border-radius: 4px 14px 14px 14px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+.page-garden .flower-note[hidden] { display: none; }
+.page-garden .flower-note p { margin: 0; }
+.page-garden .flower-note-msg { color: var(--g-title); font-size: 15px; line-height: 1.65; }
+.page-garden .flower-note-who { margin-top: 6px !important; color: var(--g-muted); font-size: 12.5px; }
+.page-garden .flower-note-mine { margin-top: 4px !important; color: var(--pink); font-size: 12.5px; }
+
+/* 「拔掉这朵」：小小的、淡淡的红字，点第一下变成确认 */
+.page-garden .flower-note-remove {
+  display: block;
+  margin: 8px 0 0 auto;
+  padding: 3px 0;
+  border: 0;
+  background: none;
+  color: color-mix(in srgb, var(--watermelon) 70%, var(--g-muted));
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.page-garden .flower-note-remove[hidden] { display: none; }
+.page-garden .flower-note-remove:hover { text-decoration: underline; text-underline-offset: 3px; }
+.page-garden .flower-note-remove.is-armed { color: var(--watermelon); font-weight: 600; }
+.page-garden .flower-note-remove:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; border-radius: 4px; }
+.page-garden .flower-note-remove[disabled] { opacity: .6; cursor: wait; }
+
+/* 拔掉的花缩回地里 */
+.page-garden .flower.is-pulling {
+  transform: translate(-50%, -100%) scale(0);
+  transition: transform .4s var(--ease);
+}
+
+/* 手机上没有悬停，只用点出来的纸条，免得两个一起出现 */
+@media (hover: none) {
+  .page-garden .flower:hover .flower-tip { opacity: 0; }
+}
+
+/* 种下那一刻飘起来的一句话 */
+.page-garden .garden-thank {
+  position: absolute;
+  z-index: 30;
+  transform: translate(-50%, -100%);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  color: var(--g-title);
+  font-size: 13.5px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: thank-float 1.9s var(--ease) forwards;
+}
+@keyframes thank-float {
+  0% { opacity: 0; margin-top: -60px; }
+  18% { opacity: 1; margin-top: -96px; }
+  75% { opacity: 1; margin-top: -112px; }
+  100% { opacity: 0; margin-top: -124px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-garden .plant-sprout { animation: none; }
+  .page-garden .plant-sheet { transition: none; }
+  .page-garden .garden-thank { animation: none; margin-top: -100px; }
+}

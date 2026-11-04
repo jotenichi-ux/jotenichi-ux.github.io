@@ -1,0 +1,407 @@
+/* ==========================================================================
+   Beata · 世界正在展开  —  全站可读性补丁
+   --------------------------------------------------------------------------
+   和 garden.css 同一套思路：不动 style.css / scrapbook.css 里的一行，
+   只在这里给「正文型页面」补一层更清楚的排版。
+
+   为什么需要：
+   原来的字号是按杂志小字调的 —— .sec-label 13.5px、.page-en 16px、
+   .note-kind 12px 全都用 --ink-3(#8a8fa3)，在奶白底上只有 3.16:1，
+   低于 WCAG AA 的 4.5:1。小字配浅色，读起来就是「要眯眼」。
+
+   作用范围：body 带 .rb 的页面（首页 / 关于 / 足迹 / 碎片 / 写作 / 文章 / 404）。
+   花园页有独立的 garden.css，不受影响。
+
+   加载顺序：style.css → scrapbook.css → motion.css → readability.css
+   文件结构：
+   01. 本层用色
+   02. 标题与标签
+   03. 引言与正文
+   04. 首页
+   05. 关于
+   06. 足迹
+   07. 碎片
+   08. 写作
+   09. 文章页
+   10. 页脚
+   11. 窄屏
+   ========================================================================== */
+
+/* ==========================================================================
+   01. 本层用色
+   --r-title #303448 ≈ 12.6:1 / --r-body #44475a ≈ 8.9:1 / --r-muted #62677b ≈ 5.7:1
+   ========================================================================== */
+
+body.rb {
+  --r-title: #303448;
+  --r-body: #44475a;
+  --r-muted: #62677b;
+}
+
+[data-theme="night"] body.rb {
+  --r-title: #f3f5fc;
+  --r-body: #d6daea;
+  --r-muted: #b4b9ce;
+}
+
+/* ==========================================================================
+   02. 标题与标签
+   字号一律不动，只把字重和行高往「标题」上靠，颜色拉到 AA 以上。
+   ========================================================================== */
+
+body.rb h1,
+body.rb h2.sec-title {
+  font-weight: 600;
+  line-height: 1.28;
+  letter-spacing: 0.005em;
+  color: var(--r-title);
+  text-wrap: balance;
+}
+
+body.rb h3 {
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--r-title);
+}
+
+body.rb h4 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--r-body);
+}
+
+/* 01 / ABOUT ME 这类英文装饰标签：字号保持，字距收一点，颜色加深 */
+body.rb .sec-label {
+  font-size: 13.5px;
+  letter-spacing: 0.08em;
+  color: var(--r-muted);
+}
+
+/* 标题下的英文副题，跟着正文一档，不做成灰点 */
+body.rb .page-en {
+  font-size: 17px;
+  letter-spacing: 0.03em;
+  color: var(--r-muted);
+}
+
+/* 板块之间的过渡小字（↳ 光说这些好像还不够…） */
+body.rb .section-whisper {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--r-muted);
+}
+
+body.rb .link-more {
+  font-size: 15.5px;
+}
+
+body.rb .btn {
+  font-size: 15.5px;
+  min-height: 46px;
+}
+
+/* ==========================================================================
+   03. 引言与正文
+   行宽 640px（中文一行约 35 字），行高 1.8，颜色用 --r-body。
+   ========================================================================== */
+
+body.rb .sec-sub {
+  max-width: 640px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--r-body);
+  text-wrap: pretty;
+}
+
+/* ==========================================================================
+   04. 首页
+   ========================================================================== */
+
+/* So Am I. —— 26px 的斜体，原来的浅灰在奶白底上几乎化开 */
+body.rb .hero-en {
+  color: var(--r-muted);
+}
+
+/* 项目卡上的编号与标签 */
+body.rb .p-idx {
+  font-size: 13.5px;
+  letter-spacing: 0.1em;
+  color: var(--r-muted);
+}
+
+body.rb .tag {
+  font-size: 13.5px;
+  color: var(--r-muted);
+}
+
+/* 便签：note-kind / note-top 是 12px 的浅灰小字，放在彩纸上几乎看不见 */
+body.rb .note-kind,
+body.rb .note-top {
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: var(--r-muted);
+}
+
+/* ==========================================================================
+   05. 关于
+   时间线是这一页的主体，原来的 tl-when 12.5px、tl-desc 15px 偏轻。
+   ========================================================================== */
+
+body.rb .about-intro p,
+body.rb .about-intro .lead {
+  line-height: 1.85;
+}
+
+/* 主照下方的手写旁白 / 右下角 LIFE, LATELY：12.5px 和 10px 都太小 */
+body.rb .photo-slot--filled figcaption {
+  font-size: 13.5px;
+  color: var(--r-muted);
+}
+
+body.rb .photo-slot::before {
+  font-size: 11px;
+  color: var(--r-muted);
+}
+
+/* 时间线：描述原本卡在 34em（约 510px），右侧空出一大片，
+   这里让整条线撑到 680px，一行能多放十来个字，断行也自然些 */
+body.rb .timeline {
+  max-width: 680px;
+}
+
+body.rb .tl-desc {
+  max-width: none;
+}
+
+body.rb .tl-when {
+  font-size: 13.5px;
+  letter-spacing: 0.06em;
+  color: var(--r-muted);
+}
+
+body.rb .tl-what {
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--r-title);
+}
+
+body.rb .tl-desc {
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--r-body);
+}
+
+body.rb .small-list li,
+body.rb .skill-list li {
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--r-body);
+}
+
+/* 「晚上才会想到的」小段落 */
+body.rb .night-note {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--r-muted);
+}
+
+/* 「联系我」卡片里那段说明 */
+body.rb .card p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--r-body);
+}
+
+/* ==========================================================================
+   06. 足迹
+   ========================================================================== */
+
+body.rb .proj-meta,
+body.rb .card p.proj-meta {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--r-muted);
+}
+
+body.rb .proj-body p {
+  font-size: 16.5px;
+  line-height: 1.85;
+  color: var(--r-body);
+}
+
+body.rb .event-caption {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--r-muted);
+}
+
+/* 筛选按钮：13px 太小，手指也不好点 */
+body.rb .filter-btn {
+  min-height: 40px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   07. 碎片
+   ========================================================================== */
+
+body.rb .now-card p {
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--r-body);
+}
+
+/* ==========================================================================
+   08. 写作
+   ========================================================================== */
+
+body.rb .post-title {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--r-title);
+}
+
+body.rb .post-sum {
+  font-size: 16.5px;
+  line-height: 1.85;
+  color: var(--r-body);
+}
+
+body.rb .post-date,
+body.rb .post-read {
+  font-size: 13.5px;
+  letter-spacing: 0.04em;
+  color: var(--r-muted);
+}
+
+/* ==========================================================================
+   09. 文章页
+   正文是这里最该舒服的地方：18px / 1.9，段落之间留一口气。
+   ========================================================================== */
+
+body.rb .article-body p {
+  font-size: 18px;
+  line-height: 1.9;
+}
+
+body.rb .article-body p + p {
+  margin-top: 1.15em;
+}
+
+body.rb .article-meta {
+  font-size: 13.5px;
+  letter-spacing: 0.04em;
+  color: var(--r-muted);
+}
+
+body.rb .article-body blockquote p {
+  line-height: 1.85;
+}
+
+/* ==========================================================================
+   10. 页脚
+   ========================================================================== */
+
+body.rb .foot-en--sign {
+  font-size: 15.5px;
+  letter-spacing: 0.02em;
+  color: var(--r-muted);
+}
+
+/* I'm Beata. 与下面那句要保持同一个灰，别一深一浅
+   （页脚原规则是 .site-foot .foot-brand 和 [data-theme] .site-foot .foot-brand，
+     所以这里要带上 .site-foot 才压得住） */
+body.rb .site-foot .foot-brand,
+body.rb .site-foot .foot-brand--en {
+  color: var(--r-muted);
+}
+
+body.rb .foot-note {
+  max-width: 34em;
+  text-wrap: pretty;
+}
+
+body.rb .foot-secondary-label {
+  font-size: 13.5px;
+  letter-spacing: 0.08em;
+  color: var(--r-muted);
+}
+
+body.rb .foot-bottom {
+  font-size: 13.5px;
+}
+
+/* 写作页页脚「去花园坐坐」：整颗按钮原有的抬升不变，只让箭头再往前挪一点。
+   用 page-writing 限定，别的页面按钮不受影响。 */
+body.page-writing .foot-cta .btn span[aria-hidden="true"] {
+  display: inline-block;
+  transition: transform 0.32s var(--ease);
+}
+
+body.page-writing .foot-cta .btn:hover span[aria-hidden="true"],
+body.page-writing .foot-cta .btn:focus-visible span[aria-hidden="true"] {
+  transform: translate(3px, -3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.page-writing .foot-cta .btn span[aria-hidden="true"] { transition: none; }
+  body.page-writing .foot-cta .btn:hover span[aria-hidden="true"],
+  body.page-writing .foot-cta .btn:focus-visible span[aria-hidden="true"] { transform: none; }
+}
+
+/* ==========================================================================
+   11. 窄屏
+   ========================================================================== */
+
+@media (max-width: 760px) {
+  body.rb h1,
+  body.rb h2.sec-title {
+    line-height: 1.3;
+  }
+
+  /* 手机上的首屏正文原来是 16px，跟着其它正文一起提半档 */
+  body.rb .hero-intro p {
+    font-size: 16.5px;
+  }
+
+  body.rb .page-en {
+    font-size: 15.5px;
+  }
+
+  body.rb .sec-sub {
+    max-width: none;
+    font-size: 17px;
+    line-height: 1.78;
+  }
+
+  body.rb .section-whisper {
+    font-size: 14.5px;
+  }
+
+  body.rb .btn {
+    min-height: 48px;
+  }
+
+  body.rb .tl-desc,
+  body.rb .proj-body p,
+  body.rb .small-list li,
+  body.rb .skill-list li,
+  body.rb .now-card p,
+  body.rb .post-sum {
+    font-size: 16px;
+  }
+
+  body.rb .post-title {
+    font-size: 20px;
+  }
+
+  body.rb .article-body p {
+    font-size: 17px;
+    line-height: 1.85;
+  }
+}

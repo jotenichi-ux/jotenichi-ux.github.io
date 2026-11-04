@@ -1,0 +1,221 @@
+/* 碎片页：便签墙上方一条胶卷 + 几张「写过的话」便签。只给 fragments.html 用。 */
+
+/* ==========================================================================
+   胶卷：一排小拍立得，横着拖
+   ========================================================================== */
+.page-fragments .film { margin: 0 0 40px; }
+
+.page-fragments .film-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+.page-fragments .film-title {
+  margin: 0;
+  color: var(--ink-2);
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  letter-spacing: .04em;
+}
+.page-fragments .film-hint {
+  margin-left: 8px;
+  color: var(--ink-3);
+  font: italic 12px var(--font-en);
+}
+.page-fragments .film-nav { display: flex; gap: 8px; }
+.page-fragments .film-arrow {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--card) 80%, transparent);
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.page-fragments .film-arrow:hover { color: var(--ink); border-color: var(--ink-3); }
+.page-fragments .film-arrow:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+
+.page-fragments .film-strip {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 16px 6px 22px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  cursor: grab;
+}
+.page-fragments .film-strip.is-dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+.page-fragments .film-strip > li { flex: 0 0 200px; scroll-snap-align: start; }
+
+/* 一张小拍立得：白边、底边宽一点写日期，依次轻轻歪 */
+.page-fragments .film-shot {
+  display: block;
+  width: 100%;
+  padding: 8px 8px 0;
+  border: 0;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(46, 49, 66, .12), 0 1px 3px rgba(46, 49, 66, .08);
+  cursor: inherit;
+  transform: rotate(var(--tilt, -1.2deg));
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.page-fragments .film-strip > li:nth-child(even) .film-shot { --tilt: 1.4deg; }
+.page-fragments .film-strip > li:nth-child(3n) .film-shot { --tilt: -.6deg; }
+.page-fragments .film-shot:hover,
+.page-fragments .film-shot:focus-visible {
+  transform: rotate(0) translateY(-6px);
+  box-shadow: 0 16px 32px rgba(46, 49, 66, .18);
+}
+.page-fragments .film-shot:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; }
+.page-fragments .film-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 1px;
+  filter: saturate(.92) contrast(.98);
+  pointer-events: none;
+  user-select: none;
+}
+.page-fragments .film-shot > span {
+  display: block;
+  padding: 9px 0 11px;
+  color: #8a8fa3;
+  font: italic 12px/1 var(--font-en);
+  letter-spacing: .06em;
+  text-align: center;
+}
+
+/* ==========================================================================
+   点开一张：大图弹窗
+   ========================================================================== */
+.page-fragments .film-view {
+  width: min(92vw, 760px);
+  max-height: 92vh;
+  padding: 14px 14px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: var(--shadow-lg);
+}
+.page-fragments .film-view::backdrop { background: rgba(20, 20, 40, .62); backdrop-filter: blur(3px); }
+.page-fragments .film-view figure { margin: 0; }
+.page-fragments .film-view img {
+  display: block;
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+.page-fragments .film-view figcaption {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  padding: 12px 4px 0;
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+.page-fragments #filmViewDate {
+  flex: none;
+  color: var(--ink-3);
+  font: italic 12.5px var(--font-en);
+  letter-spacing: .06em;
+}
+.page-fragments .film-view-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .85);
+  color: #2e3142;
+  font-size: 14px;
+  cursor: pointer;
+}
+.page-fragments .film-view-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* 夜里：相纸边换米白，照片稍微压暗 */
+[data-theme="night"] .page-fragments .film-shot { background: #ece6dc; box-shadow: 0 10px 24px rgba(0, 0, 0, .38); }
+[data-theme="night"] .page-fragments .film-shot img { filter: saturate(.88) brightness(.92); }
+
+/* ==========================================================================
+   便签墙：两列瀑布流，卡片安静一点，胶带只贴一部分
+   ========================================================================== */
+.page-fragments .notes {
+  display: block;
+  columns: 2 380px;
+  column-gap: 28px;
+  padding-top: 12px;   /* 给第一排的胶带留位置 */
+}
+.page-fragments .notes > .note {
+  break-inside: avoid;
+  margin-bottom: 22px;
+  padding: 22px 26px;
+  border: 1px solid color-mix(in srgb, var(--line) 65%, transparent);
+  border-radius: 14px;
+  box-shadow: none;
+  transform: none;      /* 原来每隔几张错开、歪一下，这里统一摆正 */
+}
+/* 便签本来就不能点，指上去不再浮起来 */
+.page-fragments .notes > .note:hover { transform: none; box-shadow: none; }
+
+/* 胶带：默认不贴，大约每三张贴一条，位置和角度错开 */
+.page-fragments .notes > .note::before { display: none; }
+.page-fragments .notes > .note:nth-child(3n+1)::before {
+  display: block;
+  left: 26%;
+  opacity: .7;
+  transform: translateX(-50%) rotate(-6deg);
+}
+.page-fragments .notes > .note:nth-child(6n+4)::before {
+  left: 74%;
+  transform: translateX(-50%) rotate(5deg);
+}
+
+/* 顶部的分类和日期调淡，让正文先被看到 */
+.page-fragments .notes .note-top { opacity: .78; }
+
+/* 「写过的话」：正文左边一条细粉线，像摘抄本上的标记 */
+.page-fragments .note--quote p:not(.note-top) {
+  padding-left: 14px;
+  border-left: 2px solid color-mix(in srgb, var(--pink) 45%, transparent);
+  font-size: 16.5px;
+  line-height: 1.9;
+  color: var(--ink);
+}
+
+@media (max-width: 760px) {
+  .page-fragments .notes { columns: 1; }
+}
+
+@media (max-width: 520px) {
+  .page-fragments .notes > .note { padding: 20px 22px; }
+  .page-fragments .film-strip > li { flex-basis: 160px; }
+  .page-fragments .film-hint { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-fragments .film-strip { scroll-behavior: auto; }
+  .page-fragments .film-shot { transition: none; }
+}

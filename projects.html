@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>足迹 · 世界正在展开</title>
+<meta name="description" content="关于尝试、经历，以及那些一路走来慢慢积累的东西。">
+<meta name="theme-color" content="#fffdf8">
+<link rel="preload" href="assets/fonts/noto-serif-sc-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/noto-serif-sc-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=20261103z1">
+<link rel="stylesheet" href="assets/css/style.css?v=20261104d">
+<link rel="stylesheet" href="assets/css/scrapbook.css?v=20261104i">
+<link rel="stylesheet" href="assets/css/motion.css?v=20261103z">
+<link rel="stylesheet" href="assets/css/readability.css?v=20261103z">
+<link rel="stylesheet" href="assets/css/breaks.css?v=20261103z">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("beata.theme");
+      /* 没手动选过就按本地时间：7:00-19:00 白天，其余算夜里 */
+      if (t !== "night" && t !== "day") {
+        var h = new Date().getHours();
+        t = h >= 7 && h < 19 ? "day" : "night";
+      }
+      if (t === "night") document.documentElement.setAttribute("data-theme", "night");
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body class="rb page-projects">
+
+<header class="site-head" id="siteHead">
+  <div class="wrap head-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-txt">世界正在展开</span>
+      <span class="brand-sub">So Am I.</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于</a>
+      <a href="projects.html" aria-current="page">足迹</a>
+      <a href="fragments.html">碎片</a>
+      <a href="writing.html">写作</a>
+      <a href="garden.html">花园</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="切换到夜间模式" title="戳戳小猫，天就黑了">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6.5 9.5 6 5.6l3.3 1.8a7.4 7.4 0 0 1 5.4 0L18 5.6l-.5 3.9a5.4 5.4 0 1 1-11 0Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="9.4" cy="11.6" r="1" fill="currentColor"/>
+          <circle cx="14.6" cy="11.6" r="1" fill="currentColor"/>
+        </svg>
+      </button>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-label="打开菜单">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <path d="M3 5h12M3 9h12M3 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="sec" style="padding-top:clamp(56px,8vh,96px)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-label">02 / MY JOURNEY</p>
+      <h1 class="sec-title" style="font-size:clamp(30px,4vw,46px)">
+        原来我已经<span class="mark mark--grass">走了这么远</span>
+      </h1>
+      <p class="page-en">The Paths I've Taken</p>
+      <p class="sec-sub">
+        从翻译、教学到学生工作，再到后来接触运营和设计，我好像一直在尝试不同的事情。有些是自己主动选择的，有些则是误打误撞走进去的。<br>
+        当然，过程也不总是顺利。不过现在回头看看，还是忍不住感叹一句：哎呀，原来我已经做过这么多事啦！
+      </p>
+    </div>
+
+    <div class="filter-row reveal" role="group" aria-label="按类型筛选">
+      <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">全部</button>
+      <button class="filter-btn" type="button" data-filter="teaching" aria-pressed="false">教学</button>
+      <button class="filter-btn" type="button" data-filter="content" aria-pressed="false">内容</button>
+      <button class="filter-btn" type="button" data-filter="volunteer" aria-pressed="false">志愿 · 组织</button>
+      <button class="filter-btn" type="button" data-filter="intern" aria-pressed="false">实习 · 项目</button>
+    </div>
+
+    <div id="projList" style="display:grid; gap:14px">
+
+      <!-- 01 -->
+      <article class="card proj-item reveal" data-cat="intern">
+        <button class="proj-head" type="button" aria-expanded="false">
+          <div>
+            <h3>北辰青年 · AI <span class="nb">线上实习</span>，和这个网站</h3>
+            <p class="proj-meta">2026 · 四周 · AI 工具 / 知识管理 / 作品集</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="proj-body"><div><div class="proj-inner">
+          <div class="proj-block">
+            <h4>这是什么</h4>
+            <p>一个四周的线上 AI 实习，每周一个主题：个人说明书、个人工作台、AI 工作流、个人作品集。刚开营时以为是四件不太相干的事，学到最后才发现它们是一条线——先看清自己，再把自己的事情管好，然后去解别人的问题，最后把做过的东西整理出来。</p>
+          </div>
+          <div class="proj-block">
+            <h4>四周大概是这样过的</h4>
+            <div class="week-grid">
+              <div><b>第一周</b>写自己的说明书。发现「介绍自己」比想象中难，也第一次认真整理那些零散的经历。</div>
+              <div><b>第二周</b>搭个人工作台。生成的页面奇奇怪怪，改一处坏一处，但真的做出来了。</div>
+              <div><b>第三周</b>当面试官、学工作流。换到对面坐着，才知道经历本身不等于能力。</div>
+              <div><b>第四周</b>做作品集。开始接受自己的经历不需要被包装成一条漂亮的主线。</div>
+            </div>
+          </div>
+          <div class="proj-block">
+            <h4>我做了什么</h4>
+            <ul>
+              <li>整理出一份《AI 时代个人说明书》，后来也成了我给 AI 的一份底稿。</li>
+              <li>搭了自己的个人工作台，之后又照着线下实习的需求改了一版。</li>
+              <li>把模拟面试的问题和自己的经历对了一遍，删掉很多「我参加过」式的说法。</li>
+              <li>做了这个网站——从配色、排版、文案到日夜两套人格，全部自己定。</li>
+            </ul>
+          </div>
+          <div class="proj-block">
+            <h4>后来我在想</h4>
+            <p>AI 可以很快帮我整理材料、改结构、试很多版本，却不会替我决定哪些经历值得留下。真正慢的那一步，还是我得先看懂自己。</p>
+          </div>
+          <div class="proj-block">
+            <h4>完整的四周复盘</h4>
+            <p><a class="link-more" href="article-beicheng.html">四周之后，我好像没那么怕说「我不会」了 <span aria-hidden="true">→</span></a></p>
+          </div>
+          <div class="proj-block night-thought">
+            <h4>夜里想想</h4>
+            <p style="color:var(--ink-2); font-style:italic">这个网站的每一版都只比上一版好一点点。而我每次都以为已经到头了。</p>
+          </div>
+        </div></div></div>
+      </article>
+
+      <!-- 02 -->
+      <article class="card proj-item reveal" data-cat="teaching">
+        <button class="proj-head" type="button" aria-expanded="false">
+          <div>
+            <h3>国际本科班 · 雅思助教</h3>
+            <p class="proj-meta">2025 · 约 200 小时 · 听说读写</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="proj-body"><div><div class="proj-inner">
+          <div class="proj-block">
+            <h4>这是什么</h4>
+            <p>给国际本科班的学生做雅思助教，听说读写四个部分都要带，累计上课约 200 小时。</p>
+          </div>
+          <div class="proj-block">
+            <h4>我做了什么</h4>
+            <ul>
+              <li>备课、上课、批改、答疑，一条线走完。</li>
+              <li>按每个人的弱项排学习计划——同一个班，六七种进度。</li>
+              <li>做学习管理和反馈，让学生知道自己「在往前走」。</li>
+            </ul>
+          </div>
+          <div class="proj-block">
+            <h4>后来我在想</h4>
+            <p>讲得清楚和对方真的学会，好像不是同一件事。有时候最有用的不是再讲一遍，而是先找到他究竟从哪一步开始跟不上。</p>
+          </div>
+          <div class="proj-block night-thought">
+            <h4>夜里想想</h4>
+            <p style="color:var(--ink-2); font-style:italic">备课备到后来，我更想弄明白的是：他们到底卡在哪一步。</p>
+          </div>
+        </div></div></div>
+      </article>
+
+      <!-- 03 -->
+      <article class="card proj-item reveal" data-cat="teaching">
+        <button class="proj-head" type="button" aria-expanded="false">
+          <div>
+            <h3>线上英语口语助教</h3>
+            <p class="proj-meta">2025 · 300+ 学习者 · 课堂管理 / 家校沟通</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="proj-body"><div><div class="proj-inner">
+          <div class="proj-block">
+            <h4>这是什么</h4>
+            <p>线上口语课的支持岗。服务三百多名学习者，负责课堂管理、学习反馈和家校沟通。</p>
+          </div>
+          <div class="proj-block">
+            <h4>我做了什么</h4>
+            <ul>
+              <li>带课堂节奏，让不敢开口的人也能说上一句。</li>
+              <li>写学习反馈，跟家长解释「他为什么这周没有进步」。</li>
+              <li>和老师协调课程安排，处理临时状况。</li>
+            </ul>
+          </div>
+          <div class="proj-block">
+            <h4>后来我在想</h4>
+            <p>反馈写得完整，不一定真的有用。很多时候，对方需要的不是一段标准说明，而是有人先注意到：他最近可能有点累。</p>
+          </div>
+        </div></div></div>
+      </article>
+
+      <!-- 04 -->
+      <article class="card proj-item reveal" data-cat="teaching">
+        <button class="proj-head" type="button" aria-expanded="false">
+          <div>
+            <h3>少儿英语<span class="nb">一对一</span> / KET · PET</h3>
+            <p class="proj-meta">2025 – 2026 · 一对一 · 课程设计</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="proj-body"><div><div class="proj-inner">
+          <div class="proj-block">
+            <h4>这是什么</h4>
+            <p>给小朋友上一对一英语课，也给准备 KET / PET 的学生做过针对性辅导。</p>
+          </div>
+          <div class="proj-block">
+            <h4>我做了什么</h4>
+            <ul>
+              <li>按孩子的性格改课：坐不住的、不爱开口的、怕错的，方法都不一样。</li>
+              <li>自己找材料、做小卡片、设计能让他赢一次的小任务。</li>
+            </ul>
+          </div>
+          <div class="proj-block">
+            <h4>后来我在想</h4>
+            <p>小朋友很少配合你假装一堂课很好玩。他一走神，我就得重新想：是内容太难、节奏太慢，还是今天其实不适合硬往下讲。</p>
+          </div>
+        </div></div></div>
+      </article>
+
+      <!-- 05 -->
+      <article class="card proj-item reveal" data-cat="content">
+        <button class="proj-head" type="button" aria-expanded="false">
+          <div>
+            <h3><span class="nb">学院新媒体 ·</span> <span class="nb">从干事到部长</span></h3>
+            <p class="proj-meta">2024 – 2025 · 公众号 / 新闻稿 / 摄影 / 视频号</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="proj-body"><div><div class="proj-inner">
+          <div class="proj-block">
+            <h4>这是什么</h4>
+            <p>学院新闻宣传部门。从写稿的干事做到带人的部长，负责学院官方公众号的日常运营。</p>
+          </div>
+          <div class="proj-block">
+            <h4>我做了什么</h4>
+            <ul>
+              <li>写推文和新闻稿，从选题、采访到成稿。</li>
+              <li>跑活动拍摄，后期选图、修图、做封面和海报。</li>
+              <li>参与视频号内容制作：脚本、拍摄、剪辑。</li>
+              <li>当部长以后，协调宣传需求、排期、带新人改稿。</li>
+            </ul>
+          </div>
+          <div class="proj-block">
+            <h4>后来我在想</h4>
+            <p>「写得完整」和「有人愿意看」是两件事。后来改稿时，我会多问一句：如果我没来过现场，为什么要把这一段读下去？</p>
+          </div>
+          <div class="project-gallery" aria-label="新闻宣传部工作照片">
+            <div class="photo-row">
+              <figure style="--ar:1.5"><img src="assets/images/projects/union-congress.webp" alt="学院团委学生会受聘暨换届大会全体合影" loading="lazy"><figcaption>我们这一届！</figcaption></figure>
+              <figure style="--ar:0.746"><img src="assets/images/projects/union-ceremony.webp" alt="学生会受聘仪式上的部门合影" loading="lazy"><figcaption>台上台下都是我们</figcaption></figure>
+              <figure style="--ar:1.248"><img src="assets/images/projects/union-party.webp" alt="新闻宣传部门在聚会会所门口的合影" loading="lazy"><figcaption>好大一个朋友圈</figcaption></figure>
+            </div>
+          </div>
+          <div class="proj-block night-thought">
+            <h4>夜里想想</h4>
+            <p style="color:var(--ink-2); font-style:italic">那些改稿到很晚的夜里，我其实好几次想算了。</p>
+          </div>
+        </div></div></div>
+      </article>
+
+      <!-- 06 -->
+      <article class="card proj-item reveal" data-cat="content">
+        <button class="proj-head" type="button" aria-expanded="false">
+          <div>
+            <h3>摄影 · 那些被记住的瞬间</h3>
+            <p class="proj-meta">2024 – 至今 · 活动 / 人像 / 天空</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="proj-body"><div><div class="proj-inner">
+          <div class="proj-block">
+            <h4>这是什么</h4>
+            <p>算不上项目，但是我最舍不得删的一块。活动摄影、朋友的人像、还有一堆天空。</p>
+          </div>
+          <div class="proj-block">
+            <h4>我做了什么</h4>
+            <ul>
+              <li>拍学院活动、会议、比赛，出图给宣传用。</li>
+              <li>给朋友拍照，被记住是「那个会拍照的人」。</li>
+              <li>拍天空。拍晚霞。拍学校门口那只小鸟。</li>
+            </ul>
+          </div>
+          <div class="proj-block">
+            <h4>后来我在想</h4>
+            <p>我当然也喜欢拍得好看。但真正舍不得删掉的，常常是那些构图没那么完美、却能让我立刻想起「那天我确实在场」的照片。</p>
+          </div>
+        </div></div></div>
+      </article>
+
+      <!-- 07 -->
+      <article class="card proj-item reveal" data-cat="volunteer">
+        <button class="proj-head" type="button" aria-expanded="false">
+          <div>
+            <h3><span class="nb">博鳌亚洲论坛 ·</span> <span class="nb">第五届世界食学论坛 ·</span> <span class="nb">亚洲沙滩运动会</span></h3>
+            <p class="proj-meta">2024 · 大型赛会志愿服务</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="proj-body"><div><div class="proj-inner">
+          <div class="proj-block">
+            <h4>这是什么</h4>
+            <p>几个大型赛会的志愿者。外语服务、媒体接待、采访摄影、现场协调都做过。</p>
+          </div>
+          <div class="proj-block">
+            <h4>我做了什么</h4>
+            <ul>
+              <li>用英语接待和引导，处理临时问题。</li>
+              <li>配合媒体做接待、采访记录和现场摄影。</li>
+              <li>在很乱的现场里跑前跑后，把人和事对上。</li>
+            </ul>
+          </div>
+          <div class="proj-block">
+            <h4>后来我在想</h4>
+            <p>大型活动里，英语当然重要，但更常用到的是在变化里先站稳、把眼前那件事接住。还有一种很难复制的开心：一群人忙得团团转，最后一起说「终于结束了」，说完又有点舍不得。</p>
+          </div>
+          <div class="project-gallery event-story-shell" id="eventStoryGallery" aria-label="赛会志愿服务照片故事">
+            <div class="event-story-stage-home" id="eventStoryStageHome">
+              <div class="event-story-stage" id="eventStoryStage" aria-live="polite">
+                <figure class="event-story-panel" data-event-panel="0">
+                  <img src="assets/images/projects/volunteer-boao.jpg" alt="Beata 与博鳌亚洲论坛志愿者伙伴合影" loading="lazy">
+                  <figcaption class="event-caption"><strong>01｜追新闻的人，追到了！</strong><span>第一次在博鳌负责媒体注册，见到了好多以前只在新闻里看到的媒体人！谁懂一个新媒体人的激动啊啊啊！带教姐姐们特别优秀，小伙伴们也超级给力，真的好难忘！</span></figcaption>
+                </figure>
+                <figure class="event-story-panel" data-event-panel="1" hidden>
+                  <img src="assets/images/projects/volunteer-forum.jpg" alt="Beata 与第五届世界食学论坛志愿者伙伴合影" loading="lazy">
+                  <figcaption class="event-caption"><strong>02｜咔嚓，党员集合！</strong><span>第五届世界食学论坛期间，和党员同志们一起留下了一张合影。嘿嘿，难得大家聚在一起，当然要好好留个纪念啦！</span></figcaption>
+                </figure>
+                <figure class="event-story-panel" data-event-panel="2" hidden>
+                  <img src="assets/images/projects/forum-5th.webp" alt="第五届世界食学论坛志愿者大合影" loading="lazy">
+                  <figcaption class="event-caption"><strong>03｜全员都很棒！</strong><span>特别特别喜欢这张群像！大家一起站在镜头前的感觉真好。想把这张照片留在这里，也想认真夸夸每一位小伙伴！</span></figcaption>
+                </figure>
+                <figure class="event-story-panel" data-event-panel="3" hidden>
+                  <img src="assets/images/projects/forum-redchef.webp" alt="Beata 在第十一届红厨帽餐厅企业家年会与嘉宾合影" loading="lazy">
+                  <figcaption class="event-caption"><strong>04｜来自巴林的温柔</strong><span>真的很幸运能接待这对阿拉伯建筑师夫妇！Dalia女士总是夸我，还给我看她在巴林的小儿子的照片。呜呜呜，怎么会有这么真诚又可爱的人呀！</span></figcaption>
+                </figure>
+                <figure class="event-story-panel" data-event-panel="4" hidden>
+                  <img src="assets/images/projects/games-desk.webp" alt="Beata 在亚沙会主媒体中心登记台工作" loading="lazy">
+                  <figcaption class="event-caption"><strong>05｜媒体中心营业中</strong><span>亚沙会MPC服务台助理上线！主要负责媒体接待，这张是带教姐姐工作时帮我拍的。嘿嘿，认真工作中的自己也值得拥有一张照片！</span></figcaption>
+                </figure>
+                <figure class="event-story-panel" data-event-panel="5" hidden>
+                  <img src="assets/images/projects/games-group.webp" alt="Beata 与亚沙会主媒体中心的伙伴合影" loading="lazy">
+                  <figcaption class="event-caption"><strong>06｜遇见很好的老师们</strong><span>和负责带我们的新华社老师们一起合影啦！老师们人真的特别特别好。能够在亚沙会遇到这么好的前辈，感觉自己超级幸运！</span></figcaption>
+                </figure>
+              </div>
+            </div>
+            <ul class="event-story-index" aria-label="照片故事目录">
+              <li class="event-story-item is-active" data-event-index="0"><button class="event-story-trigger" type="button" aria-expanded="true" aria-controls="eventStoryStage"><span class="event-story-no">01</span><span>追新闻的人，追到了！</span><span aria-hidden="true">↗</span></button></li>
+              <li class="event-story-item" data-event-index="1"><button class="event-story-trigger" type="button" aria-expanded="false" aria-controls="eventStoryStage"><span class="event-story-no">02</span><span>咔嚓，党员集合！</span><span aria-hidden="true">↗</span></button></li>
+              <li class="event-story-item" data-event-index="2"><button class="event-story-trigger" type="button" aria-expanded="false" aria-controls="eventStoryStage"><span class="event-story-no">03</span><span>全员都很棒！</span><span aria-hidden="true">↗</span></button></li>
+              <li class="event-story-item" data-event-index="3"><button class="event-story-trigger" type="button" aria-expanded="false" aria-controls="eventStoryStage"><span class="event-story-no">04</span><span>来自巴林的温柔</span><span aria-hidden="true">↗</span></button></li>
+              <li class="event-story-item" data-event-index="4"><button class="event-story-trigger" type="button" aria-expanded="false" aria-controls="eventStoryStage"><span class="event-story-no">05</span><span>媒体中心营业中</span><span aria-hidden="true">↗</span></button></li>
+              <li class="event-story-item" data-event-index="5"><button class="event-story-trigger" type="button" aria-expanded="false" aria-controls="eventStoryStage"><span class="event-story-no">06</span><span>遇见很好的老师们</span><span aria-hidden="true">↗</span></button></li>
+            </ul>
+          </div>
+          <div class="proj-block night-thought">
+            <h4>夜里想想</h4>
+            <p style="color:var(--ink-2); font-style:italic">最开心的不是见到谁，是散场之后和大家一起瘫在路边吃盒饭。</p>
+          </div>
+        </div></div></div>
+      </article>
+
+      <!-- 08 -->
+      <article class="card proj-item reveal" data-cat="volunteer">
+        <button class="proj-head" type="button" aria-expanded="false">
+          <div>
+            <h3><span class="nb">心理委员 ·</span> <span class="nb">党支部宣传委员</span></h3>
+            <p class="proj-meta">2023 – 2026 · 班级 / 支部</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="proj-body"><div><div class="proj-inner">
+          <div class="proj-block">
+            <h4>这是什么</h4>
+            <p>班里的心理委员，和本科生第二党支部的宣传委员。一个负责听，一个负责写。</p>
+          </div>
+          <div class="proj-block">
+            <h4>我做了什么</h4>
+            <ul>
+              <li>关注同学状态，做基础的沟通和转介。</li>
+              <li>负责支部的宣传材料、活动记录、推文。</li>
+            </ul>
+          </div>
+          <div class="proj-block">
+            <h4>后来我在想</h4>
+            <p>安慰人不一定要马上给出方案。很多时候，能让对方知道「有人注意到你今天不太对劲」，已经是一件很具体的事。</p>
+          </div>
+        </div></div></div>
+      </article>
+
+      <!-- 09 -->
+      <article class="card proj-item reveal" data-cat="intern">
+        <button class="proj-head" type="button" aria-expanded="false">
+          <div>
+            <h3>广州 · 用户运营实习</h3>
+            <p class="proj-meta">2026 · 内容 / 用户 / 数据</p>
+          </div>
+          <span class="proj-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="proj-body"><div><div class="proj-inner">
+          <div class="proj-block">
+            <h4>这是什么</h4>
+            <p>第一次正式做运营。跟内容、用户和数据打交道，学怎么让人愿意留下来。</p>
+          </div>
+          <div class="proj-block">
+            <h4>我做了什么</h4>
+            <ul>
+              <li>写文案、做内容排期，盯点击和转化。</li>
+              <li>拆用户在哪一步走掉，然后试着改那一小步。</li>
+              <li>为一个标题、一个按钮的位置反复纠结。</li>
+            </ul>
+          </div>
+          <div class="proj-block">
+            <h4>后来我在想</h4>
+            <p>数据会告诉我人在哪一步离开，却不会自动解释为什么。运营有点像反复调整一扇门：不是硬把人拉进来，而是让真正需要的人更容易看见它。</p>
+          </div>
+          <div class="proj-block night-thought">
+            <h4>夜里想想</h4>
+            <p style="color:var(--ink-2); font-style:italic">我大概有一半时间在怀疑自己做不好，另一半时间在偷偷觉得自己还行。</p>
+          </div>
+        </div></div></div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-lead">
+        <p class="sec-label foot-kicker">KEEP EXPLORING ✿</p>
+        <p class="foot-big">原来不知不觉，已经走过这么多地方啦。</p>
+        <p class="foot-note">不过，生活当然不只有学习和工作。接下来给你看看那些没什么大事发生，却让我很想记住的日子。</p>
+        <p class="foot-cta"><a class="btn btn--primary" href="fragments.html">生活碎片 <span aria-hidden="true">↗</span></a></p>
+      </div>
+      <div class="foot-secondary">
+        <span class="foot-secondary-label">也可以逛逛</span>
+        <a class="foot-link" href="writing.html">我的文字</a>
+        <a class="foot-link" href="about.html">关于我</a>
+        <a class="foot-link" href="index.html">回到首页</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Made with ♡ by Beata</span>
+      <a class="foot-hint" href="#siteHead">回到故事开头 ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js?v=20261103z"></script>
+<script src="assets/js/motion.js"></script>
+</body>
+</html>

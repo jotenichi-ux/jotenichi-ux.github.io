@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>碎片 · 世界正在展开</title>
+<meta name="description" content="碎碎念、在听、在读、照片、现在在做什么。">
+<meta name="theme-color" content="#fffdf8">
+<link rel="preload" href="assets/fonts/noto-serif-sc-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/noto-serif-sc-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=20261103z1">
+<link rel="stylesheet" href="assets/css/style.css?v=20261104d">
+<link rel="stylesheet" href="assets/css/scrapbook.css?v=20261104i">
+<link rel="stylesheet" href="assets/css/motion.css?v=20261103z">
+<link rel="stylesheet" href="assets/css/readability.css?v=20261103z">
+<link rel="stylesheet" href="assets/css/breaks.css?v=20261103z">
+<link rel="stylesheet" href="assets/css/pilot-refinement.css?v=20261103z1">
+<link rel="stylesheet" href="assets/css/fragments.css?v=20261104c">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("beata.theme");
+      /* 没手动选过就按本地时间：7:00-19:00 白天，其余算夜里 */
+      if (t !== "night" && t !== "day") {
+        var h = new Date().getHours();
+        t = h >= 7 && h < 19 ? "day" : "night";
+      }
+      if (t === "night") document.documentElement.setAttribute("data-theme", "night");
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body class="rb page-fragments">
+
+<header class="site-head" id="siteHead">
+  <div class="wrap head-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-txt">世界正在展开</span>
+      <span class="brand-sub">So Am I.</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="index.html">首页</a>
+      <a href="about.html">关于</a>
+      <a href="projects.html">足迹</a>
+      <a href="fragments.html" aria-current="page">碎片</a>
+      <a href="writing.html">写作</a>
+      <a href="garden.html">花园</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="切换到夜间模式" title="戳戳小猫，天就黑了">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6.5 9.5 6 5.6l3.3 1.8a7.4 7.4 0 0 1 5.4 0L18 5.6l-.5 3.9a5.4 5.4 0 1 1-11 0Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="9.4" cy="11.6" r="1" fill="currentColor"/>
+          <circle cx="14.6" cy="11.6" r="1" fill="currentColor"/>
+        </svg>
+      </button>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-label="打开菜单">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <path d="M3 5h12M3 9h12M3 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="sec" style="padding-top:clamp(56px,8vh,96px)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-label">03 / LITTLE MOMENTS</p>
+      <h1 class="sec-title" style="font-size:clamp(30px,4vw,46px)">
+        今天也有<span class="mark mark--pink">值得收藏</span>的事
+      </h1>
+      <p class="page-en">Little Things, Collected</p>
+      <p class="sec-sub">
+        可能是一片很好看的天空、一只偶遇的小动物，或者某天突然发生的有趣小事。生活里有好多这样的瞬间。<br>
+        当时觉得没什么，回头再看却又忍不住<span class="nb">笑出来</span>。所以，先存起来再说！
+      </p>
+    </div>
+
+    <!-- 现在在做什么 -->
+    <div class="card now-card reveal" style="margin-bottom:44px">
+      <div>
+        <h4>现在在做什么</h4>
+        <p>在改这个网站！改了又改，改了又改哈哈哈。顺便学学 AI 工具。</p>
+      </div>
+      <div>
+        <h4>最近在学</h4>
+        <p>网页和知识管理。目前进度：会一点，但不多。</p>
+      </div>
+      <div>
+        <h4>最近循环的一句</h4>
+        <p>「要努力，但不要太着急。」</p>
+      </div>
+    </div>
+
+    <!-- 胶卷：相机里存的照片，横着拖着看，点一张放大 -->
+    <section class="film reveal" aria-label="相机里存的照片">
+      <div class="film-head">
+        <p class="film-title">📷 相机里存的 · <span id="filmCount">8</span> 张 <span class="film-hint">拖一拖</span></p>
+        <div class="film-nav">
+          <button type="button" class="film-arrow" id="filmPrev" aria-label="往左翻">←</button>
+          <button type="button" class="film-arrow" id="filmNext" aria-label="往右翻">→</button>
+        </div>
+      </div>
+      <ul class="film-strip" id="filmStrip">
+        <li><button type="button" class="film-shot" data-date="10 / 21" data-cap="今日份天空！！！！">
+          <img src="assets/images/fragments/frag-sky-51.jpg" alt="51 路公交站牌旁边，粉紫色的晚霞和一个小月亮" width="1200" height="900" loading="lazy" draggable="false"><span>10 / 21</span>
+        </button></li>
+        <li><button type="button" class="film-shot" data-date="05 / 16" data-cap="彩虹！！伸手想摸一下，当然没摸到哈哈哈">
+          <img src="assets/images/fragments/frag-rainbow.jpg" alt="伸手去够天上的一道彩虹" width="900" height="1200" loading="lazy" draggable="false"><span>05 / 16</span>
+        </button></li>
+        <li><button type="button" class="film-shot" data-date="05 / 25" data-cap="回宿舍路上的天，粉得不像话！">
+          <img src="assets/images/fragments/frag-palm-road.jpg" alt="两排椰子树中间的马路，天边是粉色的晚霞" width="900" height="1200" loading="lazy" draggable="false"><span>05 / 25</span>
+        </button></li>
+        <li><button type="button" class="film-shot" data-date="06 / 05" data-cap="下楼的时候瞥了一眼窗外，直接停住了。">
+          <img src="assets/images/fragments/frag-stair-sunset.jpg" alt="楼梯间的大窗户外面，整片天都是粉红色" width="1200" height="900" loading="lazy" draggable="false"><span>06 / 05</span>
+        </button></li>
+        <li><button type="button" class="film-shot" data-date="09 / 15" data-cap="沫沫在花架上睡着了，尾巴还垂下来一截。我拍了八张，八张全糊。">
+          <img src="assets/images/fragments/frag-momo-shelf.jpg" alt="沫沫闭着眼睛趴在花架上，尾巴垂下来" width="900" height="1200" loading="lazy" draggable="false"><span>09 / 15</span>
+        </button></li>
+        <li><button type="button" class="film-shot" data-date="03 / 14" data-cap="给熊熊整了条船（其实就是把伞倒过来）。">
+          <img src="assets/images/fragments/frag-bear-boat.jpg" alt="一只穿红毛衣的大熊坐在倒放的雨伞里，望着栏杆外面" width="900" height="1200" loading="lazy" draggable="false"><span>03 / 14</span>
+        </button></li>
+        <li><button type="button" class="film-shot" data-date="10 / 03" data-cap="海上有只红白条纹的小帆船，好可爱！">
+          <img src="assets/images/fragments/frag-sailboat.jpg" alt="蓝色的海面上有一只红白条纹的小帆船" width="1200" height="675" loading="lazy" draggable="false"><span>10 / 03</span>
+        </button></li>
+        <li class="only-night"><button type="button" class="film-shot" data-date="00 : 56" data-cap="凌晨的沫沫，眼睛瞪得溜圆，不睡觉在想啥呢。">
+          <img src="assets/images/fragments/frag-momo-night.jpg" alt="沫沫趴在凉席上，眼睛睁得圆圆的" width="1200" height="900" loading="lazy" draggable="false"><span>00 : 56</span>
+        </button></li>
+      </ul>
+    </section>
+
+    <!-- 点开胶卷里的一张：大图 + 日期 + 那句话 -->
+    <dialog class="film-view" id="filmView" aria-label="照片大图">
+      <button type="button" class="film-view-close" id="filmClose" aria-label="关闭">✕</button>
+      <figure>
+        <img id="filmViewImg" src="" alt="">
+        <figcaption><span id="filmViewDate"></span><span id="filmViewCap"></span></figcaption>
+      </figure>
+      <div class="film-view-nav">
+        <button type="button" class="film-arrow" id="filmViewPrev" aria-label="上一张">←</button>
+        <button type="button" class="film-arrow" id="filmViewNext" aria-label="下一张">→</button>
+      </div>
+    </dialog>
+
+    <div class="notes">
+
+      <div class="note note--blue reveal">
+        <div class="note-top"><span class="note-kind">📷 大惊小怪</span><span>10 / 21</span></div>
+        <p class="note-big">今日份天空！！！！</p>
+      </div>
+
+      <div class="note note--green reveal">
+        <div class="note-top"><span class="note-kind">💬 碎碎念</span><span>10 / 18</span></div>
+        <p>下课的时候学生从包里掏了一块小饼干给我！！开心了一整天，谁懂啊。</p>
+      </div>
+
+      <div class="note note--pink reveal">
+        <div class="note-top"><span class="note-kind">💬 碎碎念</span><span>08 / 17</span></div>
+        <p>好感人<br>第一天上班<br>开始差点坐错地铁了还<br>疯狂挤地铁啊<br>也是遇见好人了呜呜呜<br>差点都要被挤倒了<br>竟然还有人主动扶我，太感动了</p>
+      </div>
+
+      <div class="note note--pink reveal">
+        <div class="note-top"><span class="note-kind">✅ 愿望清单</span><span>随时</span></div>
+        <p>
+          <s style="color:var(--ink-3)">自己搭一个网站</s><br>
+          <s style="color:var(--ink-3)">把《关于我》写完</s><br>
+          去一次没去过的城市<br>
+          拍一组很认真的人像<br>
+          对自己好一点
+        </p>
+      </div>
+
+      <div class="note reveal">
+        <div class="note-top"><span class="note-kind">💬 碎碎念</span><span>10 / 12</span></div>
+        <p>学校门口的树上停了只小鸟，我盯着看了好久，看完才反应过来：诶？我怎么没拍！</p>
+      </div>
+
+      <div class="note note--quote reveal">
+        <div class="note-top"><span class="note-kind">✍️ 写过的话</span><span>09 / 03</span></div>
+        <p>我不再能轻易地飞了，但我或许能学会走得更远。</p>
+      </div>
+
+      <div class="note note--blue reveal">
+        <div class="note-top"><span class="note-kind">📷 照片</span><span>09 / 26</span></div>
+        <p>学校里的菠萝蜜结果了！！路过的时候忍不住多看了两眼。</p>
+      </div>
+
+      <div class="note only-night">
+        <div class="note-top"><span class="note-kind">🌙 夜里</span><span>02 : 47</span></div>
+        <p>好累哦……先睡了，明天再说。</p>
+      </div>
+
+      <div class="note note--green reveal">
+        <div class="note-top"><span class="note-kind">💬 碎碎念</span><span>10 / 08</span></div>
+        <p>每次聚会散场，最后一个走的总是我。舍不得嘛。</p>
+      </div>
+
+      <div class="note note--quote reveal">
+        <div class="note-top"><span class="note-kind">✍️ 写过的话</span><span>05 / 04</span></div>
+        <p>这些被原谅的错，像春季的雨，淋过之后，泥土才松软，种子才发芽。</p>
+      </div>
+
+
+      <div class="note note--pink reveal">
+        <div class="note-top"><span class="note-kind">📷 照片</span><span>09 / 15</span></div>
+        <p>沫沫在花架上睡着了，尾巴还垂下来一截。我拍了八张，八张全糊。</p>
+      </div>
+
+      <div class="note note--quote reveal">
+        <div class="note-top"><span class="note-kind">✍️ 写给自己</span><span>随时</span></div>
+        <p>只要有进步就可以，不要因为畏难而迟迟不敢开始。</p>
+      </div>
+
+
+    </div>
+
+    <p class="reveal" style="margin-top:40px; color:var(--ink-3); font-size:14px">
+      想到哪记哪，顺序别太在意～
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-lead">
+        <p class="sec-label foot-kicker">TURN THE PAGE ✿</p>
+        <p class="foot-big">好啦，照片暂时翻到这里！</p>
+        <p class="foot-note">其实还有好多故事没讲完。有些装进了相册，有些嘛，被我写进了文字里。</p>
+        <p class="foot-note fragment-garden-invite">照片先翻到这里。要不要顺便去我的花园看看？</p>
+        <p class="foot-cta">
+          <a class="btn btn--primary" href="writing.html">我的文字 <span aria-hidden="true">↗</span></a>
+          <a class="btn btn--ghost fragment-garden-link" href="garden.html">去花园看看 <span aria-hidden="true">✿</span></a>
+        </p>
+      </div>
+      <div class="foot-secondary">
+        <span class="foot-secondary-label">也可以逛逛</span>
+        <a class="foot-link" href="projects.html">我的足迹</a>
+        <a class="foot-link" href="about.html">关于我</a>
+        <a class="foot-link" href="index.html">回到首页</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Made with ♡ by Beata</span>
+      <a class="foot-hint" href="#siteHead">回到故事开头 ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js?v=20261103z"></script>
+<script src="assets/js/motion.js"></script>
+<script src="assets/js/fragments.js?v=20261104c"></script>
+</body>
+</html>

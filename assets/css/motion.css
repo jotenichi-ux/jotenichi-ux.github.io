@@ -1,0 +1,241 @@
+/* ==========================================================================
+   Beata · 世界正在展开  —  动效层（motion.css）
+   --------------------------------------------------------------------------
+   单独一层，只负责「翻页 + 手感」，不改原有配色和版式。
+   想关掉某一项：删掉对应小节，或在 html 上去掉 .motion 这个类。
+   全部遵循 prefers-reduced-motion。
+
+   01. 纸幕：页面之间的一口气
+   02. 阅读进度：文章页顶上的一根线
+   03. 卡片：轻微倾斜 + 跟着鼠标的一小片光
+   04. 标题关键词：像刚涂上去的色块
+   05. 图片：淡进来
+   06. 按钮：按下去的手感
+   07. 无障碍 / 打印
+   ========================================================================== */
+
+/* ==========================================================================
+   01. 纸幕：页面之间的一口气
+   --------------------------------------------------------------------------
+   出场（motion.js 负责）：从上方落下，盖住旧页面；
+   入场（纯 CSS）：0% 时已经盖住，然后继续向下滑走。
+   两段接起来，是「一张纸从屏幕上滑过去」的连续动作。
+   ========================================================================== */
+
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  background: var(--paper);
+  pointer-events: none;
+  animation: sheetIn 0.42s cubic-bezier(0.72, 0, 0.28, 1) 0.02s both;
+}
+
+@keyframes sheetIn {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(101%);
+  }
+}
+
+.page-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  background: var(--paper);
+  transform: translateY(-101%);
+  transition: transform 0.3s cubic-bezier(0.72, 0, 0.28, 1);
+}
+
+.page-veil.is-covering {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   02. 阅读进度：文章页顶上的一根线
+   --------------------------------------------------------------------------
+   只在长文里出现。滚起来才亮，不抢开头那一眼。
+   ========================================================================== */
+
+.read-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.read-bar.is-on {
+  opacity: 1;
+}
+
+.read-bar span {
+  display: block;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(90deg, var(--sky), var(--pink) 58%, var(--lilac));
+  transition: transform 0.2s ease-out;
+}
+
+/* ==========================================================================
+   03. 卡片：轻微倾斜 + 跟着鼠标的一小片光
+   --------------------------------------------------------------------------
+   倾斜由 motion.js 用 requestAnimationFrame 算，所以是真的跟手、也不受
+   别处 transition 影响；这里只负责那片光。
+   只对「有鼠标」的设备生效，最多歪 3.4 度。
+   ========================================================================== */
+
+.motion .card {
+  isolation: isolate;
+  --mx: 50%;
+  --my: 50%;
+}
+
+.motion .card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+  background: radial-gradient(
+    330px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--sky) 20%, transparent),
+    transparent 70%
+  );
+}
+
+.motion .card.is-tilting::after {
+  opacity: 1;
+}
+
+/* 跟鼠标的时候不想要 transform 的过渡：motion.js 每帧都在算新角度，
+   再来一个 0.5s 的 transition 只会让卡片慢半拍、像在漂。
+   其他属性（阴影、描边）照旧过渡。 */
+.motion .card.is-tilting {
+  transition: box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+}
+
+/* ==========================================================================
+   04. 标题关键词：像刚涂上去的色块
+   --------------------------------------------------------------------------
+   滚动到跟前，色块从左往右「刷」上去，而不是整块突然出现。
+   ========================================================================== */
+
+.motion .mark::before {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s var(--ease) 0.08s;
+}
+
+.motion .mark.is-inked::before {
+  clip-path: inset(0 0 0 0);
+}
+
+/* ==========================================================================
+   05. 图片：淡进来
+   --------------------------------------------------------------------------
+   只给「要滚动才看到」的图，首屏那几张不参与，免得看完动画才看清。
+   ========================================================================== */
+
+.motion img.is-fading {
+  opacity: 0;
+  transition: opacity 0.8s var(--ease);
+}
+
+.motion img.is-fading.is-loaded {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   06. 按钮：按下去的手感
+   ========================================================================== */
+
+.btn:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+/* ==========================================================================
+   07. 无障碍 / 打印
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html::after,
+  .page-veil {
+    display: none !important;
+  }
+}
+
+@media print {
+  html::after,
+  .page-veil,
+  .read-bar {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   06. 照片点开看大图
+   --------------------------------------------------------------------------
+   照片墙和项目相册里的图，点一下浮上来。点空白或按 Esc 收回去。
+   ========================================================================== */
+
+.photo-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .26s ease;
+}
+
+.photo-zoom.is-on { opacity: 1; pointer-events: auto; }
+
+.photo-zoom img {
+  max-width: min(94vw, 1080px);
+  max-height: 86vh;
+  border-radius: 8px;
+  box-shadow: 0 30px 80px rgba(30, 40, 45, .26);
+  transform: scale(.965);
+  transition: transform .34s cubic-bezier(.2, .8, .3, 1);
+}
+
+.photo-zoom.is-on img { transform: scale(1); }
+
+.photo-zoom-x {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--ink-2);
+  font: 20px/1 var(--font-ui);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.photo-zoom-x:hover { color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-zoom, .photo-zoom img { transition: none; }
+  .photo-zoom img { transform: none; }
+}

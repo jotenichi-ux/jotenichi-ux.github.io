@@ -1,0 +1,45 @@
+/* 思源宋体（Noto Serif SC）本地自托管版（按本站在用字符子集化，2026-11-03）
+   来源：Noto Serif SC (SubsetOTF)，SIL Open Font License 1.1
+   目的：中文走衬线（宋体），英文继续用 Georgia 斜体，搭配成「宋 + 衬线拉丁」。
+   四个字重对应站点实际用到的 400 / 500 / 600 / 700。 */
+
+/* 同字体的完整本机版本只承担子集未收录的新字，避免单个汉字跳到更粗的宋体。 */
+@font-face {
+  font-family: "Noto Serif SC Full";
+  src: local("Noto Serif SC");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("../fonts/noto-serif-sc-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("../fonts/noto-serif-sc-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("../fonts/noto-serif-sc-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("../fonts/noto-serif-sc-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

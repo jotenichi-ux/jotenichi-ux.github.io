@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>世界正在展开 · A Little Universe by Beata</title>
+<meta name="description" content="一个普通女孩的小世界：做过的事、拍下的照片、写下的字，还有一只叫沫沫的猫。">
+<meta name="theme-color" content="#fffdf8">
+<link rel="preload" href="assets/fonts/noto-serif-sc-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/noto-serif-sc-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=20261103z1">
+<link rel="stylesheet" href="assets/css/style.css?v=20261104d">
+<link rel="stylesheet" href="assets/css/scrapbook.css?v=20261104i">
+<link rel="stylesheet" href="assets/css/motion.css?v=20261103z">
+<link rel="stylesheet" href="assets/css/readability.css?v=20261103z">
+<link rel="stylesheet" href="assets/css/breaks.css?v=20261103z">
+<link rel="stylesheet" href="assets/css/pilot-refinement.css?v=20261103z1">
+<script>
+  /* 页面渲染前先把上次选的模式读出来，避免夜间访客打开时先闪一下白天 */
+  (function () {
+    try {
+      var t = localStorage.getItem("beata.theme");
+      /* 没手动选过就按本地时间：7:00-19:00 白天，其余算夜里 */
+      if (t !== "night" && t !== "day") {
+        var h = new Date().getHours();
+        t = h >= 7 && h < 19 ? "day" : "night";
+      }
+      if (t === "night") document.documentElement.setAttribute("data-theme", "night");
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body class="rb page-home">
+
+<!-- ============ 信封：第一次来，先拆一封信 ============ -->
+<div class="letter-gate" id="letterGate" role="dialog" aria-modal="true" aria-labelledby="letterTitle" tabindex="-1" hidden>
+  <div class="letter-stage">
+    <p class="letter-kicker">A LETTER FOR YOU</p>
+
+    <div class="letter-frame">
+      <button class="envelope" id="envelopeBtn" type="button" aria-label="拆开这封信">
+        <span class="envelope-letter" aria-hidden="true"></span>
+        <span class="envelope-body" aria-hidden="true">
+          <span class="envelope-flap"></span>
+          <span class="envelope-pocket"></span>
+          <span class="envelope-seal">B</span>
+        </span>
+        <span class="envelope-hint">点一下，拆开这封信</span>
+      </button>
+
+      <article class="letter-card" id="letterCard" aria-hidden="true" tabindex="-1">
+        <p class="letter-mark" aria-hidden="true">✦</p>
+        <h2 class="letter-title" id="letterTitle">Hi，我是 Beata</h2>
+        <div class="letter-body">
+          <p>欢迎来到我的一小块互联网自留地。</p>
+
+          <p>我好像一直是一个很喜欢记录的人。</p>
+          <p class="short">记录见过的人、走过的路、突然很好看的天空，</p>
+          <p class="short">记录那些让我大笑、流泪、困惑，又重新对生活产生兴趣的瞬间。</p>
+
+          <p>这些年，我做过很多看起来不太相关的事情。</p>
+          <p>学翻译、教英语、做志愿者、拍照、写东西、做运营，也在硕大的世界里到处乱逛。</p>
+          <p>我常常不知道下一站会去哪里，但好像一直很喜欢这种——</p>
+          <p><strong>「先去看看再说。」</strong></p>
+
+          <p>我喜欢一群人热热闹闹地做一件事情，也喜欢一个人安安静静地想很多事情。</p>
+          <p>我会为一个新的想法兴奋很久，会为了几个像素反复调整一张图，也会因为晚霞、小动物、朋友的一句话和意料之外的善意开心很久。</p>
+
+          <p>我曾经在二十岁的时候写：</p>
+          <p class="short"><strong>「希望自己永远不要停止探索的热情。」</strong></p>
+          <p>现在，我还在替那时候的自己完成这个愿望。</p>
+
+          <p>所以这里不会只是一个作品集。</p>
+          <p>它会装下我的学习、工作、项目和作品，也会留下我的文字、照片、思考、朋友，以及那些暂时还不知道该归到哪里的生活碎片。</p>
+
+          <p>如果一定要给这里一个主题——</p>
+          <p class="short">我想，大概是：</p>
+          <p><strong>一个普通的人，如何跌跌撞撞地成为自己。</strong></p>
+
+          <p>欢迎你来到这里。</p>
+          <p class="short">也欢迎你认识此刻的我。</p>
+        </div>
+        <p class="letter-sign">I'm Beata.<br>Still exploring, still becoming. ✦</p>
+        <div class="letter-actions">
+          <button class="btn btn--primary" id="letterClose" type="button">收好，进去逛逛 ↗</button>
+          <span class="letter-tip">下次想再读，页脚有「那封信」</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 页头 ===================== -->
+<header class="site-head" id="siteHead">
+  <div class="wrap head-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-txt">世界正在展开</span>
+      <span class="brand-sub">So Am I.</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="index.html" aria-current="page">首页</a>
+      <a href="about.html">关于</a>
+      <a href="projects.html">足迹</a>
+      <a href="fragments.html">碎片</a>
+      <a href="writing.html">写作</a>
+      <a href="garden.html">花园</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="切换到夜间模式" title="戳戳小猫，天就黑了">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6.5 9.5 6 5.6l3.3 1.8a7.4 7.4 0 0 1 5.4 0L18 5.6l-.5 3.9a5.4 5.4 0 1 1-11 0Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="9.4" cy="11.6" r="1" fill="currentColor"/>
+          <circle cx="14.6" cy="11.6" r="1" fill="currentColor"/>
+        </svg>
+      </button>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-label="打开菜单">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <path d="M3 5h12M3 9h12M3 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===================== 首屏 ===================== -->
+<section class="hero wrap">
+
+  <div class="hero-copy">
+
+    <!-- ☀️ 白天人格：今天也在到处看看 -->
+    <div class="only-day">
+
+      <h1 class="hero-title fade-up" style="animation-delay:.08s">
+        世界正在展开
+      </h1>
+
+      <p class="hero-en fade-up" style="animation-delay:.17s">So Am I.</p>
+
+      <div class="hero-intro fade-up" style="animation-delay:.24s">
+        <p>你好呀，我是 Beata！</p>
+        <p>一个兴趣有点广泛、脑袋里经常冒出奇怪想法的普通女孩。</p>
+        <p>喜欢去没去过的地方，尝试没做过的事情，也喜欢把那些<span class="nb">乱七八糟</span>却<span class="nb">舍不得</span>忘记的<span class="nb">瞬间记录下来</span>。</p>
+        <p>至于以后会变成什么样嘛……谁知道呢！反正世界这么大，我还想再多看看。</p>
+      </div>
+
+      <div class="hero-actions fade-up" style="animation-delay:.3s">
+        <a class="btn btn--primary" href="#who">进来逛逛 <span aria-hidden="true">↗</span></a>
+        <a class="btn btn--ghost" href="garden.html">去花园</a>
+      </div>
+    </div>
+
+    <!-- 🌙 夜晚人格：月亮还没睡，我也是 -->
+    <div class="only-night">
+
+      <h1 class="hero-title hero-in" style="animation-delay:.08s">
+        世界正在展开
+      </h1>
+
+      <p class="hero-en hero-in" style="animation-delay:.17s">So Am I.</p>
+
+      <div class="hero-intro hero-in" style="animation-delay:.24s">
+        <p>晚上好呀，我还是 Beata。</p>
+        <p>这个点还醒着的话，我们大概挺聊得来的。</p>
+        <p>白天想不明白的事，一到晚上反而更容易说出口。</p>
+        <p>所以这里的我，大概会慢一点，也软一点。</p>
+      </div>
+
+      <div class="hero-actions hero-in" style="animation-delay:.3s">
+        <a class="btn btn--primary" href="#night-radio">去坐一会儿 <span aria-hidden="true">↗</span></a>
+        <a class="btn btn--ghost" href="garden.html">夜里的花园</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hero-art">
+    <p class="art-note art-note--owner">
+      <span class="only-day">这个世界的主人，<br>目前还在四处探索中。</span>
+      <span class="only-night">这个世界的主人，<br>现在也还没睡。</span>
+    </p>
+    <button class="ip-stage only-day" id="catSwitch" type="button" aria-label="戳一下沫沫，切换到夜间模式">
+      <span class="cat-bubble" id="catBubble">喵？你找我有事吗？</span>
+      <img class="ip-illustration" src="assets/images/home/beata-momo-day.webp" alt="白天的 Beata 在书桌前和奶牛猫沫沫一起发呆">
+    </button>
+    <button class="night-ip-stage only-night" id="nightCatSwitch" type="button" aria-label="戳一下夜里的 Beata 和沫沫，切换到日间模式">
+      <img class="night-ip-illustration" src="assets/images/home/beata-momo-night.webp" alt="夜里的 Beata 和奶牛猫沫沫窝在被子里看电脑">
+    </button>
+    <!-- ============ Q 版的我（🌙 夜间版：睡衣、热饮、困眼） ============ -->
+    <svg class="mascot" viewBox="0 0 360 430" fill="none" xmlns="http://www.w3.org/2000/svg" role="button" tabindex="0" aria-label="夜里的 Beata，穿着睡衣捧着一杯热的，戳一下天就亮了">
+      <defs>
+        <filter id="softBlur" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="15"/>
+        </filter>
+        <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="4"/>
+        </filter>
+      </defs>
+
+      <!-- 背后的水彩晕 -->
+      <path d="M180 66 C 262 66 322 128 324 208 C 326 292 268 362 180 364 C 92 366 36 296 38 210 C 40 128 98 66 180 66 Z"
+            fill="var(--sky)" opacity="0.16" filter="url(#softBlur)"/>
+      <path d="M180 96 C 244 96 292 146 294 212 C 296 280 250 334 180 336 C 110 338 66 282 68 214 C 70 148 116 96 180 96 Z"
+            fill="var(--grass)" opacity="0.10" filter="url(#softBlur)"/>
+
+      <!-- 后脑勺的头发 -->
+      <ellipse cx="180" cy="158" rx="89" ry="93" fill="var(--hair)"/>
+
+      <!-- 脖子 -->
+      <rect x="162" y="222" width="36" height="44" rx="18" fill="var(--skin-deep)"/>
+
+      <!-- 身体 -->
+      <path d="M180 246 C 128 246 96 274 88 316 C 84 338 82 356 82 372 C 82 386 92 392 108 394 C 132 397 228 397 252 394 C 268 392 278 386 278 372 C 278 356 276 338 272 316 C 264 274 232 246 180 246 Z"
+            fill="var(--cloth)"/>
+
+      <!-- 睡衣上的小星星（夜里才出现） -->
+      <g class="only-night" fill="var(--yellow)" opacity="0.75">
+        <circle cx="132" cy="320" r="3"/>
+        <circle cx="214" cy="348" r="2.4"/>
+        <circle cx="248" cy="304" r="2.8"/>
+        <circle cx="110" cy="368" r="2.2"/>
+        <circle cx="176" cy="382" r="2.6"/>
+      </g>
+
+      <!-- 脸 -->
+      <ellipse cx="180" cy="170" rx="72" ry="75" fill="var(--skin)"/>
+
+      <!-- 刘海 -->
+      <path d="M110 154 C 112 112 138 92 180 92 C 222 92 248 112 250 154 C 240 140 226 131 212 141 C 202 148 196 134 182 138 C 168 142 160 133 148 139 C 136 145 122 141 110 154 Z"
+            fill="var(--hair)"/>
+      <!-- 一缕翘起来的头发（夜里比较乱） -->
+      <path class="only-night" d="M214 100 C 226 86 240 84 246 90" stroke="var(--hair)" stroke-width="7" stroke-linecap="round"/>
+      <path class="only-night" d="M124 106 C 114 94 102 92 96 98" stroke="var(--hair)" stroke-width="6" stroke-linecap="round"/>
+
+      <!-- 两侧头发搭在肩上 -->
+      <ellipse cx="106" cy="212" rx="15" ry="44" fill="var(--hair)"/>
+      <ellipse cx="254" cy="212" rx="15" ry="44" fill="var(--hair)"/>
+
+      <!-- 腮红 -->
+      <ellipse cx="130" cy="200" rx="15" ry="9" fill="var(--pink)" opacity="0.45"/>
+      <ellipse cx="230" cy="200" rx="15" ry="9" fill="var(--pink)" opacity="0.45"/>
+
+      <!-- 嘴巴 -->
+      <path d="M172 203 q8 7 16 0" stroke="#3a3550" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+      <!-- 白天：睁着眼 -->
+      <g class="only-day">
+        <ellipse class="eye" cx="152" cy="176" rx="7.2" ry="9.6" fill="#3a3550"/>
+        <ellipse class="eye" cx="208" cy="176" rx="7.2" ry="9.6" fill="#3a3550"/>
+        <circle cx="154.6" cy="172.4" r="2.7" fill="#fff" opacity="0.92"/>
+        <circle cx="210.6" cy="172.4" r="2.7" fill="#fff" opacity="0.92"/>
+      </g>
+
+      <!-- 夜里：困得睁不开 -->
+      <g class="only-night">
+        <path d="M144 177 q8 7 16 0" stroke="#3a3550" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+        <path d="M200 177 q8 7 16 0" stroke="#3a3550" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+      </g>
+
+      <!-- 手臂 -->
+      <path d="M112 318 C 116 348 136 362 156 364" stroke="var(--cloth)" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <path d="M248 318 C 244 348 224 362 204 364" stroke="var(--cloth)" stroke-width="30" stroke-linecap="round" fill="none"/>
+
+      <!-- ===== 白天：抱着相机 ===== -->
+      <g class="only-day">
+        <rect x="138" y="328" width="84" height="58" rx="16" fill="#3a3550"/>
+        <rect x="166" y="318" width="28" height="14" rx="6" fill="#3a3550"/>
+        <circle cx="180" cy="357" r="19" fill="#5a5570"/>
+        <circle cx="180" cy="357" r="14" fill="#8EC9FF"/>
+        <circle cx="175" cy="352" r="5" fill="#fff" opacity="0.6"/>
+        <circle cx="210" cy="340" r="4" fill="var(--yellow)"/>
+        <!-- 手 -->
+        <circle cx="150" cy="366" r="11" fill="var(--skin)"/>
+        <circle cx="210" cy="366" r="11" fill="var(--skin)"/>
+      </g>
+
+      <!-- ===== 夜里：捧着一杯热的东西 ===== -->
+      <g class="only-night">
+        <rect x="152" y="330" width="56" height="52" rx="14" fill="#fffdf8"/>
+        <path d="M208 344 q18 4 18 14 q0 10 -18 12" stroke="#fffdf8" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <rect x="152" y="330" width="56" height="12" rx="6" fill="var(--pink)" opacity="0.75"/>
+        <path d="M166 318 q6 -11 0 -20" stroke="var(--ink-2)" stroke-width="2.2" stroke-linecap="round" opacity="0.45" fill="none"/>
+        <path d="M184 314 q7 -13 0 -24" stroke="var(--ink-2)" stroke-width="2.2" stroke-linecap="round" opacity="0.35" fill="none"/>
+        <circle cx="150" cy="352" r="10.5" fill="var(--skin)"/>
+        <circle cx="210" cy="352" r="10.5" fill="var(--skin)"/>
+      </g>
+
+      <!-- 夜里飘着的小月亮和星星 -->
+      <g class="only-night">
+        <path d="M296 118 a26 26 0 1 0 20 40 a30 30 0 1 1 -20 -40 Z" fill="var(--yellow)" opacity="0.9"/>
+        <circle cx="70" cy="112" r="3" fill="var(--yellow)" opacity="0.8"/>
+        <circle cx="60" cy="150" r="2" fill="#fff" opacity="0.7"/>
+        <circle cx="308" cy="196" r="2.6" fill="#fff" opacity="0.6"/>
+      </g>
+
+      <!-- 夜里的小猫：白天在晒台上打盹，现在眼睛发亮 -->
+      <g class="only-night">
+        <!-- 落地的一点影子 -->
+        <ellipse cx="196" cy="402" rx="112" ry="16" fill="#0d0c1f" opacity="0.55" filter="url(#softBlur)"/>
+        <!-- 尾巴 -->
+        <path d="M344 372 C 364 366 366 338 352 328" stroke="var(--cat-fur)" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <!-- 身体 -->
+        <ellipse cx="310" cy="358" rx="42" ry="28" fill="var(--cat-fur)"/>
+        <!-- 背上的黑斑 -->
+        <path d="M300 332 C 332 340 350 352 350 372 C 340 384 318 386 302 380 C 312 364 310 346 300 332 Z" fill="var(--cat-patch)"/>
+        <!-- 前爪 -->
+        <ellipse cx="262" cy="378" rx="9" ry="5.5" fill="var(--cat-fur)"/>
+        <ellipse cx="282" cy="380" rx="9" ry="5.5" fill="var(--cat-fur)"/>
+        <!-- 头 -->
+        <circle cx="268" cy="336" r="27" fill="var(--cat-fur)"/>
+        <!-- 耳朵 -->
+        <path d="M248 318 L242 292 L268 306 Z" fill="var(--cat-patch)"/>
+        <path d="M288 318 L294 292 L268 306 Z" fill="var(--cat-fur)"/>
+        <path d="M288 315 L291 301 L276 308 Z" fill="var(--pink)" opacity="0.65"/>
+        <!-- 眼上的黑斑（奶牛猫的标志） -->
+        <path d="M247 330 C 248 312 259 302 268 304 C 264 318 258 327 247 333 Z" fill="var(--cat-patch)"/>
+        <!-- 发亮的眼睛 -->
+        <circle cx="256" cy="336" r="7.5" fill="var(--yellow)" opacity="0.22"/>
+        <circle cx="280" cy="336" r="7.5" fill="var(--yellow)" opacity="0.22"/>
+        <circle cx="256" cy="336" r="3.4" fill="var(--yellow)"/>
+        <circle cx="280" cy="336" r="3.4" fill="var(--yellow)"/>
+        <!-- 鼻子和嘴 -->
+        <path d="M268 345 l4.4 3.2 -4.4 3.2 -4.4 -3.2 Z" fill="var(--pink)"/>
+      </g>
+    </svg>
+
+    <!-- 夜里的随机气泡（白天不出现） -->
+    <span class="night-bubble" id="nightBubble" aria-live="polite">嘘，猫已经睡着了。</span>
+
+    <!-- ============ 小猫：天黑开关 ============ -->
+    <button class="cat-switch" id="catSwitchLegacy" type="button" aria-label="旧版小猫插画">
+      <span class="cat-bubble" id="catBubbleLegacy">喵？你找我有事吗？</span>
+      <svg class="cat" viewBox="0 0 200 172" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- 尾巴 -->
+        <path d="M146 150 C 178 148 188 122 174 108" stroke="var(--cat-fur)" stroke-width="15" stroke-linecap="round" fill="none"/>
+        <path d="M174 108 C 170 102 166 99 161 98" stroke="var(--cat-patch)" stroke-width="15" stroke-linecap="round" fill="none"/>
+
+        <!-- 身体 -->
+        <path d="M100 64 C 62 64 46 100 46 130 C 46 152 70 161 100 161 C 130 161 154 152 154 130 C 154 100 138 64 100 64 Z"
+              fill="var(--cat-fur)" stroke="var(--cat-line)" stroke-width="1.4"/>
+        <!-- 背上的黑斑 -->
+        <path d="M124 76 C 144 86 152 108 152 128 C 152 146 138 157 118 159 C 134 138 140 108 124 76 Z"
+              fill="var(--cat-patch)"/>
+
+        <!-- 耳朵 -->
+        <path d="M68 32 L60 2 L92 18 Z" fill="var(--cat-patch)"/>
+        <path d="M132 32 L140 2 L108 18 Z" fill="var(--cat-fur)" stroke="var(--cat-line)" stroke-width="1.4"/>
+        <path d="M133 27 L137 10 L118 20 Z" fill="var(--pink)" opacity="0.7"/>
+
+        <!-- 头 -->
+        <circle cx="100" cy="52" r="40" fill="var(--cat-fur)" stroke="var(--cat-line)" stroke-width="1.4"/>
+        <!-- 左眼上的黑斑（奶牛猫的标志） -->
+        <path d="M62 46 C 64 24 80 12 100 14 C 98 30 86 46 62 52 Z" fill="var(--cat-patch)"/>
+
+        <!-- 胡须 -->
+        <path d="M56 56 h-12 M56 64 l-11 4 M144 56 h12 M144 64 l11 4"
+              stroke="var(--ink-3)" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
+
+        <!-- 鼻子和嘴 -->
+        <path d="M96.5 60 h7 l-3.5 4.5 z" fill="var(--pink)"/>
+        <path d="M100 65 q-4 6 -8 1 M100 65 q4 6 8 1" stroke="#3a3550" stroke-width="1.9" stroke-linecap="round" fill="none"/>
+
+        <!-- 白天：睡着 -->
+        <g class="only-day">
+          <path d="M78 52 q9 7 18 0" stroke="#3a3550" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+          <path d="M104 52 q9 7 18 0" stroke="#3a3550" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+          <text x="158" y="34" fill="var(--ink-3)" font-size="15" font-family="Georgia, serif" opacity="0.8">z</text>
+          <text x="170" y="20" fill="var(--ink-3)" font-size="11" font-family="Georgia, serif" opacity="0.6">z</text>
+        </g>
+
+        <!-- 夜里：眼睛发亮 -->
+        <g class="only-night">
+          <circle cx="87" cy="52" r="9" fill="#FFC93C"/>
+          <circle cx="113" cy="52" r="9" fill="#FFC93C"/>
+          <circle cx="87" cy="52" r="4.2" fill="#2b2640"/>
+          <circle cx="113" cy="52" r="4.2" fill="#2b2640"/>
+          <circle cx="84.6" cy="49" r="1.7" fill="#fff"/>
+          <circle cx="110.6" cy="49" r="1.7" fill="#fff"/>
+        </g>
+
+        <!-- 前爪 -->
+        <ellipse cx="80" cy="152" rx="14" ry="9" fill="var(--cat-fur)" stroke="var(--cat-line)" stroke-width="1.2"/>
+        <ellipse cx="120" cy="152" rx="14" ry="9" fill="var(--cat-fur)" stroke="var(--cat-line)" stroke-width="1.2"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="hero-secret-discovery" data-hero-discovery="secret">
+    <button class="hero-secret-trigger hero-discovery-link" id="heroSecretTrigger" type="button"
+            aria-expanded="false" aria-controls="heroSecretPanel">
+      <span aria-hidden="true">🐾</span> 嘘……
+      <small>偷偷告诉你一件事</small>
+    </button>
+    <aside class="hero-secret-panel" id="heroSecretPanel" role="dialog" aria-modal="true"
+           aria-labelledby="heroSecretTitle" tabindex="-1" hidden>
+      <button class="hero-discovery-close" id="heroSecretClose" type="button" aria-label="收起秘密卡片">×</button>
+      <span class="hero-secret-paw" aria-hidden="true">🐾</span>
+      <h2 id="heroSecretTitle">嘘，偷偷告诉你……</h2>
+      <p>这个网站里藏着一些我的小秘密、碎碎念，还有一只可能比我更受欢迎的猫。</p>
+      <p>至于其他的嘛，欢迎自己来探索！</p>
+      <span class="hero-secret-heart" aria-hidden="true">♡</span>
+    </aside>
+  </div>
+
+  <div class="hero-note-discovery hero-note-discovery--art" data-hero-discovery="note">
+    <button class="hero-note-trigger hero-discovery-link" id="heroNoteTrigger" type="button"
+            aria-expanded="false" aria-controls="heroNotePanel">
+      <span>✳ 抽一句</span>
+      <small>点开看看？</small>
+    </button>
+    <aside class="hero-note-panel" id="heroNotePanel" role="dialog" aria-modal="true"
+           aria-labelledby="heroNoteTitle" tabindex="-1" hidden>
+      <button class="hero-discovery-close" id="heroNoteClose" type="button" aria-label="收起小纸条">×</button>
+      <p class="hero-note-kicker" id="heroNoteTitle">来自 Beata 的一张小纸条</p>
+      <p class="hero-note-copy" id="heroNoteCopy" aria-live="polite"></p>
+      <button class="hero-note-again" id="heroNoteAgain" type="button">再抽一张 ↻</button>
+    </aside>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span></span> scroll
+  </div>
+</section>
+
+<!-- ===================== 02 我是谁 ===================== -->
+<section class="sec" id="who">
+  <div class="wrap">
+    <img class="section-sticker section-sticker--reading only-day" src="assets/images/deco/deco-reading-cat.webp" alt="" aria-hidden="true">
+    <img class="section-sticker section-sticker--moon only-night" src="assets/images/deco/deco-moon-cat.webp" alt="" aria-hidden="true">
+    <div class="sec-head reveal">
+      <p class="section-whisper">
+        <span class="only-day">↳ 光说这些好像还不够，带你认识一下生活里的我吧。</span>
+        <span class="only-night">↳ 夜里说这些，好像更容易一点。</span>
+      </p>
+      <p class="sec-label">01 / ABOUT ME</p>
+      <h2 class="sec-title">关于这个<span class="mark">兴趣有点广泛</span>的人</h2>
+      <p class="sec-sub">想认识我？那就从一些小事说起吧。</p>
+    </div>
+
+    <div class="prose-self reveal" data-delay="80">
+      <p>我其实不太擅长用几个标签介绍自己。</p>
+      <p>喜欢热热闹闹地和大家一起做事，也喜欢安安静静地写点东西。会为了几个像素把一张图改来改去，也会因为学会一个新技能开心好久。</p>
+      <p>有时候信心满满，有时候又会突然犯懒。不过我觉得这样也挺好。</p>
+      <p class="quiet">毕竟我还在慢慢认识自己嘛。</p>
+      <p><a class="link-more" href="about.html">A Little More About Me <span aria-hidden="true">→</span></a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 03 我做过什么 ===================== -->
+<section class="sec sec--tint" id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="section-whisper">
+        <span class="only-day">↳ 不过光说不练可不行！来看看我这些年都折腾了些什么。</span>
+        <span class="only-night">↳ 有些事当时没什么感觉，现在看还挺有意思。</span>
+      </p>
+      <p class="sec-label">02 / MY JOURNEY</p>
+      <h2 class="sec-title">
+        <span class="only-day">原来我已经<span class="mark mark--grass">走了这么远</span></span>
+        <span class="only-night">那些熬过的夜</span>
+      </h2>
+      <p class="sec-sub">
+        <span class="only-day">一些认真做过的事，还有一些意料之外的收获。</span>
+        <span class="only-night">白天写进简历的那一栏，背后是这样的。</span>
+      </p>
+    </div>
+
+    <div class="grid-3" data-stagger="110">
+      <article class="card p-card reveal">
+        <span class="p-idx">01</span>
+        <h3>国际本科班 · 雅思助教</h3>
+        <p>听说读写都带过。比起把一堂课讲完，我更想弄明白：同一句解释，为什么有人点头，有人还是皱着眉。</p>
+        <div class="p-tags">
+          <span class="tag">教学</span>
+          <span class="tag tag--grass">2025</span>
+        </div>
+        <p class="night-note only-night">备课备到后来，我更想弄明白的是：他们到底卡在哪一步。</p>
+      </article>
+
+      <article class="card p-card reveal">
+        <span class="p-idx">02</span>
+        <h3><span class="nb">学院新媒体 ·</span> <span class="nb">从干事到部长</span></h3>
+        <p>从写第一篇稿子到后来带新人改稿，我慢慢发现：把一件事写完整不难，难的是让没来现场的人也愿意继续看。</p>
+        <div class="p-tags">
+          <span class="tag">内容</span>
+          <span class="tag tag--grass">2024 – 2025</span>
+        </div>
+        <p class="night-note only-night">那些改稿到很晚的夜里，我其实好几次想算了。</p>
+      </article>
+
+      <article class="card p-card reveal">
+        <span class="p-idx">03</span>
+        <h3>北辰青年 · AI 线上实习</h3>
+        <p>最开始只是学工具、整理经历，后来越做越不像一份作品集。于是干脆把它变成这个能放文章、照片和碎片的小窝。</p>
+        <div class="p-tags">
+          <span class="tag">实习</span>
+          <span class="tag tag--grass">2026</span>
+        </div>
+        <p class="night-note only-night">这个网站的每一版都只比上一版好一点点，而我每次都以为已经到头了。</p>
+      </article>
+    </div>
+
+    <p class="reveal" style="margin-top:34px">
+      <a class="link-more" href="projects.html">这段故事还有后续 <span aria-hidden="true">↗</span></a>
+    </p>
+  </div>
+</section>
+
+<!-- ===================== 04 生活碎片 ===================== -->
+<section class="sec" id="lately">
+  <div class="wrap">
+    <img class="section-sticker section-sticker--camera only-day" src="assets/images/deco/deco-camera-girl-cat.webp" alt="" aria-hidden="true">
+    <img class="section-sticker section-sticker--chin only-night" src="assets/images/deco/deco-red-dress-girl-cat.webp" alt="" aria-hidden="true">
+    <div class="sec-head reveal">
+      <p class="section-whisper">
+        <span class="only-day">↳ 好啦好啦，先不聊工作学习了，给你看看我的日常！</span>
+        <span class="only-night">↳ 先不看那些了，看看我随手记下的东西。</span>
+      </p>
+      <p class="sec-label">03 / LITTLE MOMENTS</p>
+      <h2 class="sec-title">今天也有<span class="mark mark--pink">值得收藏</span>的事</h2>
+      <p class="sec-sub">不是什么大事，但我就是想记下来。</p>
+    </div>
+
+    <div class="grid-3 home-fragment-preview" data-stagger="90">
+        <div class="note note--pink reveal" style="padding:18px 20px">
+          <div class="note-top"><span class="note-kind">🌱 now</span><span>10 月</span></div>
+          <p>在学 AI 工具和网页。刚弄懂一个新东西的时候，还是会很想立刻找个人分享。</p>
+        </div>
+    </div>
+
+    <p class="reveal" style="margin-top:30px">
+      <a class="link-more" href="fragments.html">所有碎片 <span aria-hidden="true">→</span></a>
+    </p>
+  </div>
+</section>
+
+<!-- ===================== 05 写作 ===================== -->
+<section class="sec sec--tint" id="writing-home">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="section-whisper">
+        <span class="only-day">↳ 有些事情几句话说不完，所以我干脆把它们写下来了。</span>
+        <span class="only-night">↳ 有些话，好像只能在夜里写下来。</span>
+      </p>
+      <p class="sec-label">04 / WRITINGS</p>
+      <h2 class="sec-title">
+        <span class="only-day">有些话，还是<span class="mark">写下来</span>比较好</span>
+        <span class="only-night">睡不着的时候<span class="mark mark--lilac">想的</span></span>
+      </h2>
+      <p class="sec-sub">
+        <span class="only-day">关于世界，关于别人，也关于我自己。</span>
+        <span class="only-night">有些话白天写不出来，晚上倒是挺顺的。</span>
+      </p>
+    </div>
+    <article class="card home-writing-card reveal">
+      <div>
+        <p class="sec-label" style="margin:0 0 12px">最新一篇 · 2026 / 11</p>
+        <h3>原来，我也可以成为让别人感到幸福的人</h3>
+      </div>
+      <p>从一张被认可的海报、一份期待已久的录用，到发现自己也能把幸福传递出去。</p>
+      <a class="link-more" href="article-happiness.html">阅读更多 <span aria-hidden="true">→</span></a>
+    </article>
+    <p class="reveal" style="margin-top:28px"><a class="link-more" href="writing.html">去写作页看看 <span aria-hidden="true">→</span></a></p>
+  </div>
+</section>
+
+<!-- ===================== 🌙 夜间限定：凌晨不营业电台 ===================== -->
+<section class="sec only-night" id="night-radio">
+  <div class="wrap">
+    <img class="section-sticker section-sticker--sleeping" src="assets/images/deco/deco-sleeping-cat-books.webp" alt="" aria-hidden="true">
+    <div class="sec-head">
+      <p class="section-whisper">↳ 嘘，接下来的话，好像更适合晚上说。</p>
+      <p class="sec-label">only after dark · 00:00</p>
+      <h2 class="sec-title">凌晨不营业<span class="mark mark--lilac">电台</span></h2>
+      <p class="sec-sub">白天好像总有做不完的事。到了晚上，脑袋里的声音反而清楚起来。有些话白天没来得及说，那就留到这里吧。</p>
+    </div>
+
+    <div class="radio-list">
+      <article class="radio-item">
+        <p class="radio-kind">胡思乱想</p>
+        <p>我发现自己真的很奇怪。</p>
+        <p>明明今天过得还不错，到了晚上却又开始担心一些八百年以后才可能发生的事情。</p>
+        <p class="quiet">唉，脑袋能不能稍微休息一下啊。</p>
+      </article>
+
+      <article class="radio-item">
+        <p class="radio-kind">小小的幸福</p>
+        <p>今天其实没发生什么特别的事。</p>
+        <p>但回来的路上风很舒服，吃到了喜欢的东西，还有人记得我随口说过的话。</p>
+        <p class="quiet">突然觉得，生活好像也挺不错的。</p>
+      </article>
+
+      <article class="radio-item">
+        <p class="radio-kind">读书与思考</p>
+        <p>今天看到一句话，说真正的改变要从容纳情绪开始。</p>
+        <p>我盯着它看了好久。</p>
+        <p>以前总觉得难过了就应该赶紧调整好。</p>
+        <p class="quiet">可是，为什么连难过都要这么着急呢？</p>
+      </article>
+
+      <article class="radio-item">
+        <p class="radio-kind">深夜灵感</p>
+        <p>救命！</p>
+        <p>本来真的准备睡了，结果脑袋里突然蹦出一个绝妙的想法。</p>
+        <p>现在好了，我已经开始想它的配色、布局和交互效果了。</p>
+        <p class="quiet">谁来管管我啊啊啊！</p>
+      </article>
+
+      <article class="radio-item">
+        <p class="radio-kind">生活复盘</p>
+        <p>今天好像做了很多事情。但是仔细想想，又觉得没做成多少。</p>
+        <p>以前遇到这种情况总会有点着急，觉得一天又被浪费掉了。</p>
+        <p>不过现在想想，能把眼前的事情一点点处理好，好像也已经很不容易了。</p>
+        <p class="quiet">嗯，今天就先这样吧。</p>
+      </article>
+    </div>
+
+    <div class="radio-outro">
+      <p class="radio-outro-title">夜深啦，剩下的话下次再说。</p>
+      <p class="radio-outro-text">有些事情不一定要在今晚想明白。愿你今晚睡个好觉，明天再去看看更大的世界。</p>
+      <p class="foot-cta"><a class="btn btn--primary" href="#siteHead">回到首页 <span aria-hidden="true">↗</span></a></p>
+    </div>
+
+    <p style="margin-top:34px">
+      <a class="link-more" href="about.html#night-side">关于页里还有一段 <span aria-hidden="true">→</span></a>
+    </p>
+  </div>
+</section>
+
+<!-- ===================== 联系我 ===================== -->
+<section class="sec sec--tint" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="section-whisper">
+        <span class="only-day">↳ 想说点什么的话，直接找我就好。</span>
+        <span class="only-night">↳ 半夜突然想到什么，也可以说给我听。</span>
+      </p>
+      <p class="sec-label">05 / SAY HI</p>
+      <h2 class="sec-title">要不要<span class="mark mark--pink">认识一下</span>？</h2>
+      <p class="sec-sub">如果你也喜欢分享生活、交换奇怪的想法，或者只是想打个招呼，都欢迎来<span class="nb">找我玩呀</span>。</p>
+    </div>
+
+    <ul class="contact-list">
+      <li class="contact-item">
+        <p class="contact-kind">微信 · WeChat</p>
+        <p class="contact-value" id="contactWechat">TianerHere</p>
+        <button class="contact-copy" type="button" data-copy="TianerHere">复制微信号</button>
+      </li>
+      <li class="contact-item">
+        <p class="contact-kind">手机 · Phone</p>
+        <p class="contact-value"><a href="tel:+8618186318332">181 8631 8332</a></p>
+        <button class="contact-copy" type="button" data-copy="18186318332">复制号码</button>
+      </li>
+      <li class="contact-item">
+        <p class="contact-kind">邮箱 · Email</p>
+        <p class="contact-value"><a href="mailto:2661657982@qq.com">2661657982@qq.com</a></p>
+        <button class="contact-copy" type="button" data-copy="2661657982@qq.com">复制邮箱</button>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== 06 花园引导 ===================== -->
+<section class="sec" id="garden-invite">
+  <div class="wrap">
+    <div class="card reveal" style="padding:clamp(30px,5vw,56px); overflow:hidden; position:relative">
+      <!-- 草地上一排小花 -->
+      <svg viewBox="0 0 900 190" style="position:absolute; left:0; right:0; bottom:-18px; width:100%; height:auto; opacity:.9" aria-hidden="true">
+        <defs>
+          <symbol id="fl" viewBox="0 0 60 96">
+            <path d="M30 96 C30 80 29 62 30 38" stroke="#86D68F" stroke-width="2.6" stroke-linecap="round"/>
+            <ellipse cx="19" cy="70" rx="11" ry="4.6" fill="#9BE3A0" transform="rotate(-26 19 70)"/>
+            <ellipse cx="41" cy="80" rx="10" ry="4.2" fill="#9BE3A0" transform="rotate(22 41 80)" opacity=".8"/>
+            <g fill="currentColor">
+              <ellipse cx="41" cy="32" rx="8.5" ry="11"/>
+              <ellipse cx="35.5" cy="41.5" rx="8.5" ry="11" transform="rotate(60 35.5 41.5)"/>
+              <ellipse cx="24.5" cy="41.5" rx="8.5" ry="11" transform="rotate(-60 24.5 41.5)"/>
+              <ellipse cx="19" cy="32" rx="8.5" ry="11"/>
+              <ellipse cx="24.5" cy="22.5" rx="8.5" ry="11" transform="rotate(60 24.5 22.5)"/>
+              <ellipse cx="35.5" cy="22.5" rx="8.5" ry="11" transform="rotate(-60 35.5 22.5)"/>
+            </g>
+            <circle cx="30" cy="32" r="7.5" fill="#FFC93C"/>
+          </symbol>
+        </defs>
+        <use href="#fl" x="664" y="110" width="44" height="70" style="color:#9BE3A0"/>
+        <use href="#fl" x="720" y="96"  width="52" height="83" style="color:#FFB27A"/>
+        <use href="#fl" x="782" y="122" width="40" height="64" style="color:#FF9EC0"/>
+        <use href="#fl" x="826" y="136" width="30" height="48" style="color:#FFFDF8"/>
+      </svg>
+
+      <div style="position:relative; max-width:44ch">
+        <p class="section-whisper">↳ 故事先讲到这里，最后带你去个地方。</p>
+        <p class="sec-label">06 / THE GARDEN</p>
+        <h2 class="sec-title" style="margin-bottom:14px">
+          <span class="only-day">走之前，<span class="nb">来我的<span class="mark mark--grass">花园坐坐</span></span></span>
+          <span class="only-night">夜里种下的花，<span class="mark mark--grass">会发光</span>哦</span>
+        </h2>
+        <p style="color:var(--ink-2); font-size:15.5px; margin-bottom:26px">
+          <span class="only-day">如果你愿意，也可以留下一朵小花。现在它会先安静地留在你自己的浏览器里。</span>
+          <span class="only-night">现在的花会亮起来。你种的那朵，也会是。</span>
+        </p>
+        <a class="btn btn--primary" href="garden.html">
+          <span class="only-day">去花园坐坐</span>
+          <span class="only-night">去看看它们</span>
+          <span aria-hidden="true">✿</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 页脚 ===================== -->
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-lead">
+        <p class="sec-label foot-kicker">THE END · FOR NOW ✿</p>
+        <p class="foot-big"><span class="only-day">下次再来玩呀！</span><span class="only-night">今天就先聊到这里吧。</span></p>
+        <p class="foot-note">这里放着做过的事、拍下的照片，还有一些还没想明白的话。</p>
+        <p class="foot-brand foot-brand--en">I'm Beata.</p>
+        <p class="foot-en foot-en--sign">Still exploring, still becoming. ✦</p>
+        <p class="foot-cta"><a class="btn btn--ghost" href="garden.html">去花园坐坐 <span aria-hidden="true">↗</span></a></p>
+      </div>
+      <div class="foot-secondary">
+        <span class="foot-secondary-label">也可以逛逛</span>
+        <a class="foot-link" href="about.html">关于我</a>
+        <a class="foot-link" href="writing.html">写作</a>
+        <a class="foot-link" href="#contact">找我</a>
+        <a class="foot-link" data-letter-open href="index.html?letter=1">那封信</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Made with ♡ by Beata</span>
+      <a class="foot-hint" href="#siteHead">回到故事开头 ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js?v=20261103z"></script>
+<script src="assets/js/motion.js"></script>
+</body>
+</html>

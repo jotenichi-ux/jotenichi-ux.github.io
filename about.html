@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关于 · 世界正在展开</title>
+<meta name="description" content="关于 Beata：在海口读翻译，也教英语、写东西、拍照片，沿着绕过的路慢慢认识自己。">
+<meta name="theme-color" content="#fffdf8">
+<link rel="preload" href="assets/fonts/noto-serif-sc-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/noto-serif-sc-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=20261103z1">
+<link rel="stylesheet" href="assets/css/style.css?v=20261104d">
+<link rel="stylesheet" href="assets/css/scrapbook.css?v=20261104i">
+<link rel="stylesheet" href="assets/css/motion.css?v=20261103z">
+<link rel="stylesheet" href="assets/css/readability.css?v=20261103z">
+<link rel="stylesheet" href="assets/css/breaks.css?v=20261103z">
+<link rel="stylesheet" href="assets/css/pilot-refinement.css?v=20261103z1">
+<link rel="stylesheet" href="assets/css/about.css?v=20261104d">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("beata.theme");
+      /* 没手动选过就按本地时间：7:00-19:00 白天，其余算夜里 */
+      if (t !== "night" && t !== "day") {
+        var h = new Date().getHours();
+        t = h >= 7 && h < 19 ? "day" : "night";
+      }
+      if (t === "night") document.documentElement.setAttribute("data-theme", "night");
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body class="rb page-about">
+
+<header class="site-head" id="siteHead">
+  <div class="wrap head-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-txt">世界正在展开</span>
+      <span class="brand-sub">So Am I.</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="index.html">首页</a>
+      <a href="about.html" aria-current="page">关于</a>
+      <a href="projects.html">足迹</a>
+      <a href="fragments.html">碎片</a>
+      <a href="writing.html">写作</a>
+      <a href="garden.html">花园</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="切换到夜间模式" title="戳戳小猫，天就黑了">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6.5 9.5 6 5.6l3.3 1.8a7.4 7.4 0 0 1 5.4 0L18 5.6l-.5 3.9a5.4 5.4 0 1 1-11 0Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <circle cx="9.4" cy="11.6" r="1" fill="currentColor"/>
+          <circle cx="14.6" cy="11.6" r="1" fill="currentColor"/>
+        </svg>
+      </button>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-label="打开菜单">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <path d="M3 5h12M3 9h12M3 13h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- ===================== 开场 ===================== -->
+<section class="sec" style="padding-top:clamp(64px,9vh,110px)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-label">01 / ABOUT ME</p>
+      <h1 class="sec-title" style="font-size:clamp(30px,4vw,46px)">
+        你好，我是 <span class="mark">Beata！</span>
+      </h1>
+      <p class="page-en">A Little More About Me</p>
+      <p class="sec-sub">下面这些，大概是简历里放不下的部分。</p>
+    </div>
+
+    <div class="about-top">
+      <!-- 左栏：一叠照片，点最上面那张或往旁边甩，就翻到下一张 -->
+      <div class="pile-wrap">
+        <div class="pile" id="pile" aria-roledescription="照片堆" aria-label="照片，一共五张">
+          <figure class="pile-card pile-card--tape-yellow" data-i="0" style="--tilt:-2deg; --dx:0px; --dy:0px">
+            <img src="assets/images/about/portrait-birthday.webp" alt="Beata 戴着生日纸皇冠，面前摆着一个蛋糕" width="1200" height="1600" draggable="false">
+            <figcaption>生日那天，先拍一张再许愿。</figcaption>
+            <span class="pile-sticker pile-sticker--tl" aria-hidden="true">✿</span>
+          </figure>
+          <figure class="pile-card pile-card--wide pile-card--tape-pink" data-i="1" style="--tilt:4deg; --dx:6px; --dy:-10px">
+            <img src="assets/images/about/friends-sparklers.jpg" alt="Beata 和朋友们穿着制服围坐在餐桌旁，举着仙女棒" width="2000" height="1500" loading="lazy" draggable="false">
+            <figcaption>群像万岁，有你们真好！！！</figcaption>
+          </figure>
+          <figure class="pile-card pile-card--wide pile-card--clip" data-i="2" style="--tilt:-5deg; --dx:-8px; --dy:6px">
+            <svg class="pile-clip" viewBox="0 0 20 52" fill="none" aria-hidden="true">
+              <path d="M6 44V10a4 4 0 0 1 8 0v30a6 6 0 0 1-12 0V8a8 8 0 0 1 16 0v34" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <img src="assets/images/about/me-deer.jpg" alt="Beata 在给几只小鹿喂食" width="2000" height="1333" loading="lazy" draggable="false">
+            <figcaption>这个小鹿怎么突然离我这么近！</figcaption>
+          </figure>
+          <figure class="pile-card pile-card--tape-grass" data-i="3" style="--tilt:3deg; --dx:10px; --dy:4px">
+            <img src="assets/images/about/me-picnic-peace.jpg" alt="Beata 戴着帽子和墨镜坐在野餐垫上比耶" width="1125" height="1500" loading="lazy" draggable="false">
+            <figcaption>野餐万岁！！！</figcaption>
+          </figure>
+          <figure class="pile-card pile-card--tape-corner" data-i="4" style="--tilt:-3.5deg; --dx:-6px; --dy:-4px">
+            <img src="assets/images/about/me-braids-selfie.jpg" alt="Beata 扎着双麻花辫的自拍" width="1500" height="2000" loading="lazy" draggable="false">
+            <figcaption>特别特别喜欢这个妆！！！</figcaption>
+            <span class="pile-sticker pile-sticker--tr" aria-hidden="true">☆</span>
+          </figure>
+        </div>
+
+        <div class="pile-ui">
+          <div class="pile-dots" id="pileDots">
+            <button type="button" aria-label="翻到第 1 张"></button>
+            <button type="button" aria-label="翻到第 2 张"></button>
+            <button type="button" aria-label="翻到第 3 张"></button>
+            <button type="button" aria-label="翻到第 4 张"></button>
+            <button type="button" aria-label="翻到第 5 张"></button>
+          </div>
+          <p class="pile-count" id="pileCount" aria-live="polite">第 1 / 5 张</p>
+        </div>
+        <p class="pile-hint">点一下，或者往旁边甩</p>
+      </div>
+
+      <div class="about-intro reveal">
+        <p class="lead">其实每次要认真介绍自己的时候，我都会有点不知道从哪里说起。</p>
+
+        <p>那就先从最简单的开始吧！湖北宜昌人，在海口读翻译专业，今年大四。至于兴趣爱好嘛……这个问题可能有点难回答，因为<span class="hl">我好像对什么都挺感兴趣的</span>哈哈哈哈。</p>
+
+        <p>我很喜欢去没去过的地方，认识不同的人，尝试一些以前从来没做过的事情。</p>
+
+        <p>这些年陆陆续续接触了不少东西。教过英语，做过新闻宣传，参加过志愿服务，也尝试过运营、AI和网页设计。有些事情最开始只是觉得有趣，想着要不试试看？结果做着做着，居然也慢慢摸索出了一点门道。</p>
+
+        <p><span class="hl">我真的很喜欢这种感觉。</span></p>
+
+        <p>就是原本觉得离自己很遥远的东西，突然有一天发现，哎？好像也没有那么遥不可及嘛！</p>
+
+        <p>不过比起做过多少事情，我好像更喜欢这些经历带给我的变化。</p>
+
+        <p>比如，我发现自己越来越喜欢和不同的人交流了。</p>
+
+        <p>我很喜欢听别人讲自己的故事。可能是一个完全不同的成长经历，也可能只是对某件小事的不同看法。有时候听着听着，就会突然意识到，<span class="hl hl--pink">原来同一件事情，还可以有这样的理解方式。</span></p>
+
+        <p>这种感觉很奇妙。</p>
+
+        <p>以前我可能会很自然地用自己的经验去判断一件事，现在却越来越觉得，<span class="hl hl--lilac">每个人都有自己的处境和理由。</span>很多事情并没有那么简单，也不一定非要分出一个绝对的对错。</p>
+
+        <p>当然啦，理解别人不代表我没有自己的想法。恰恰相反，我其实还挺喜欢和别人讨论问题的。尤其是遇到一些自己没想明白的事情，总想多听听不同的声音，再慢慢琢磨出自己的答案。</p>
+
+        <p>有时候想得太多，也会把自己绕进去哈哈哈哈。</p>
+
+        <p>除了这些，我还是一个很容易因为小事开心的人。</p>
+
+        <p>可能是学会了一个新技能，可能是努力做出来的东西得到了认可，也可能是和喜欢的人一起吃了一顿好吃的，或者某天突然发现，自己好像比以前更懂得怎么处理一些事情了。</p>
+
+        <p><span class="hl hl--grass">我很喜欢这种一点一点变好的感觉。</span></p>
+
+        <p>当然，生活也不是每天都这么顺利。我也会有做不好的事情，会因为未来的不确定而焦虑，也会在某些时刻怀疑自己是不是走得太慢了。</p>
+
+        <p>但有意思的是，明明有那么多不确定的事情，<span class="hl hl--grass">我还是会忍不住期待明天。</span></p>
+
+        <p>期待认识新的人，去新的地方，学会新的东西，也期待某一天突然发现，原来自己又有了一些不一样的想法。</p>
+
+        <p>至于以后会变成什么样的人，我暂时还不知道。</p>
+
+        <p>以前总觉得，人是不是应该尽早找到一个明确的方向，然后坚定地走下去？但现在我越来越觉得，<span class="hl">很多答案或许不是坐在那里想出来的，而是在一次次尝试、经历和选择中慢慢出现的。</span></p>
+
+        <p>所以目前的我，还是想多看看、多试试，也多听听这个世界上不同的声音。</p>
+
+        <p>毕竟还有那么多事情没经历过，那么多地方没去过，那么多有趣的人还没认识呢。</p>
+
+        <p>想想就觉得挺期待的！</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 时间线 ===================== -->
+<section class="sec sec--tint" id="timeline">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-label">01 — how I got here</p>
+      <h2 class="sec-title">
+        <span class="only-day">这条线，<span class="mark mark--grass">绕了不少路</span></span>
+        <span class="only-night">夜里看这条线，每一站都多一点别的</span>
+      </h2>
+      <p class="sec-sub">
+        <span class="only-day">这不是一条提前画好的路线。很多联系，都是走过以后才看见的。</span>
+        <span class="only-night">白天那一栏是简历上的写法，<em>斜体</em>那栏是当时真实的我。</span>
+      </p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <p class="tl-when">2023 · 秋</p>
+        <h3 class="tl-what">🎓 来到海口，读翻译</h3>
+        <p class="tl-desc">海南师范大学外国语学院。第一次离家这么远，行李箱里塞了三本书和一个相机。</p>
+        <p class="night-note only-night">其实第一天晚上我在被子里哭了一会儿，第二天就好了。</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <p class="tl-when">2024 · 春</p>
+        <h3 class="tl-what">🛠 进了学院新闻宣传部门</h3>
+        <p class="tl-desc">从干事开始。写推文、写新闻稿、扛相机跑活动，第一次知道「把一件事讲清楚」有多难。</p>
+        <p class="night-note only-night">第一篇稿子被改了七遍。我当时觉得天要塌了。</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <p class="tl-when">2024 · 全年</p>
+        <h3 class="tl-what">🏆 <span class="nb">博鳌亚洲论坛 ·</span> <span class="nb">第五届世界食学论坛 ·</span> <span class="nb">亚洲沙滩运动会</span></h3>
+        <p class="tl-desc">做志愿者。外语服务、媒体接待、采访摄影、现场协调。学会在很乱的时候先站稳。</p>
+        <p class="night-note only-night">最开心的不是见到谁，是散场之后和大家一起瘫在路边吃盒饭。</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <p class="tl-when">2024 · 冬</p>
+        <h3 class="tl-what">🌱 二十岁，写下一句话</h3>
+        <p class="tl-desc">「希望自己永远不要停止探索的热情。」当时只是随手写的，后来变成了我的一个坐标。</p>
+        <p class="night-note only-night">那时候我其实很慌，写这句话有点像给自己壮胆。</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <p class="tl-when">2025</p>
+        <h3 class="tl-what">💼 线上英语口语助教</h3>
+        <p class="tl-desc">服务三百多名学习者。课堂管理、学习反馈、家校沟通、课程协调，一天要说很多话。</p>
+        <p class="night-note only-night">有一阵子我说话说到嗓子哑，回宿舍一句话都不想说。</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <p class="tl-when">2025</p>
+        <h3 class="tl-what">💼 国际本科班 · <span class="nb">雅思助教</span>（约 200 小时）</h3>
+        <p class="tl-desc">听说读写都教。备课、答疑、学习管理，给每个人排不一样的学习方案。</p>
+        <p class="night-note only-night">我最喜欢的部分不是讲课，是下课以后有人留下来问「老师我这样是不是也行」。</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <p class="tl-when">2025 – 2026</p>
+        <h3 class="tl-what">🎓 心理委员 · 党支部<span class="nb">宣传委员</span> · 少儿英语<span class="nb">一对一</span></h3>
+        <p class="tl-desc">一边组织，一边倾听，一边给小朋友上课。三件事看起来无关，其实都在练同一件事：怎么和人待在一起。</p>
+        <p class="night-note only-night">有人跟我说完话会说「谢谢你听我说」，那句谢谢我能记一年。</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <p class="tl-when">2026</p>
+        <h3 class="tl-what">💼 去广州，做用户运营实习</h3>
+        <p class="tl-desc">开始认真研究人为什么会点开一张图、一个标题、一个按钮。</p>
+        <p class="night-note only-night">我大概有一半的时间在怀疑自己会不会做不好，另一半时间在偷偷觉得自己还行。</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <p class="tl-when">2026 · 秋</p>
+        <h3 class="tl-what">🛠 北辰青年 AI <span class="nb">线上实习</span> · 然后做了这个网站</h3>
+        <p class="tl-desc">学工具、做知识管理、拆自己的经历。最后决定：与其等一个完美的作品集，不如先给自己造一个小窝。</p>
+        <p class="night-note only-night">这个网站是我第一次觉得「我好像真的可以做出来」的东西。</p>
+      </div>
+
+      <div class="tl-item tl-item--now reveal">
+        <p class="tl-when">接下来 · ？</p>
+        <h3 class="tl-what">这一格先空着</h3>
+        <p class="tl-desc">我还不知道。但这次我不太着急填了。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 几件小事 ===================== -->
+<section class="sec" id="small-things">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-label">02 — little things</p>
+      <h2 class="sec-title">一些小事，<span class="mark mark--pink">想到哪说到哪</span></h2>
+      <p class="sec-sub">正式的自我介绍就先到这里吧！接下来讲点乱七八糟的～</p>
+    </div>
+
+    <!-- 点着抽一条：一次只说一件小事；抽完六条还藏着三条 -->
+    <div class="draw reveal" id="draw">
+      <div class="draw-stage" id="drawStage" aria-live="polite">
+        <div class="draw-item" data-kind="main">
+          <h3 class="draw-title"><span aria-hidden="true">🐈</span> 家有奶牛猫</h3>
+          <p>叫沫沫！顺便说一句，这个网站的天黑开关就是她的专属出场方式。</p>
+        </div>
+        <div class="draw-item" data-kind="main">
+          <h3 class="draw-title"><span aria-hidden="true">🍕</span> 榴莲披萨爱好者</h3>
+          <p>尤其喜欢薄皮的！如果哪天心情不好，一顿好吃的真的可以哄好我一大半。</p>
+        </div>
+        <div class="draw-item" data-kind="main">
+          <h3 class="draw-title"><span aria-hidden="true">💡</span> 好奇心有点旺盛</h3>
+          <p>经常突然对什么东西产生兴趣，然后开始疯狂研究。至于下一个坑是什么，我也不知道哈哈哈。</p>
+        </div>
+        <div class="draw-item" data-kind="main">
+          <h3 class="draw-title"><span aria-hidden="true">📷</span> 相册舍不得删</h3>
+          <p>很喜欢拍照，也很喜欢翻旧照片。每次都觉得：天呐，原来那天已经过去这么久了！</p>
+        </div>
+        <div class="draw-item" data-kind="main">
+          <h3 class="draw-title"><span aria-hidden="true">💌</span> 快乐要分享！</h3>
+          <p>遇到好玩的事情就很想讲给别人听。毕竟一个人开心已经很好了，两个人一起开心岂不是更赚！</p>
+        </div>
+        <div class="draw-item" data-kind="main">
+          <h3 class="draw-title"><span aria-hidden="true">🌷</span> 偶尔也会想太多</h3>
+          <p>有时候还没开始就已经担心了一百种可能。但最后通常还是会决定：算啦，先试试看！</p>
+        </div>
+        <div class="draw-item draw-item--extra" data-kind="extra">
+          <p><span aria-hidden="true">🌙</span> 经常跟自己说「再弄五分钟」，结果一不小心就折腾到了半夜。</p>
+        </div>
+        <div class="draw-item draw-item--extra" data-kind="extra">
+          <p><span aria-hidden="true">🎀</span> 想尝试的穿搭风格特别多，衣柜里的我和脑袋里想象的我，暂时还有一点距离哈哈哈。</p>
+        </div>
+        <div class="draw-item draw-item--extra" data-kind="extra">
+          <p><span aria-hidden="true">🧳</span> 有一个小小的愿望：带着相机去很多地方，拍拍照，认识新朋友，顺便吃点好吃的！</p>
+        </div>
+      </div>
+
+      <p class="draw-psst" id="drawPsst" hidden>Psst... 还有一些没说完。</p>
+      <div class="draw-bar">
+        <button class="btn btn--ghost draw-btn" type="button" id="drawBtn" aria-controls="drawStage">再抽一条 ↻</button>
+        <span class="draw-count" id="drawCount">1 / 6</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 照片目录 ===================== -->
+<section class="sec" id="photos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="sec-label">03 — PHOTO INDEX</p>
+      <h2 class="sec-title">一些瞬间，<span class="mark mark--pink">点开才看得见</span></h2>
+      <p class="sec-sub">先读到一句话，再看看它藏着<span class="nb">哪张照片</span>。鼠标经过就会出现，点一下可以把<span class="nb">这一刻</span><span class="nb">留下来</span>。</p>
+    </div>
+
+    <div class="photo-directory-shell reveal" id="photoDirectoryShell">
+      <ul class="photo-directory" id="photoDirectory" aria-label="照片目录">
+        <li class="photo-directory-item" data-photo-index="0">
+          <button class="photo-directory-trigger" type="button" aria-expanded="false" aria-controls="photoStage"><span class="photo-directory-no">01</span><span class="photo-directory-title">雪花姐的杰作</span><span class="photo-directory-arrow" aria-hidden="true">↗</span></button>
+        </li>
+        <li class="photo-directory-item" data-photo-index="1">
+          <button class="photo-directory-trigger" type="button" aria-expanded="false" aria-controls="photoStage"><span class="photo-directory-no">02</span><span class="photo-directory-title">先吃为敬</span><span class="photo-directory-arrow" aria-hidden="true">↗</span></button>
+        </li>
+        <li class="photo-directory-item" data-photo-index="2">
+          <button class="photo-directory-trigger" type="button" aria-expanded="false" aria-controls="photoStage"><span class="photo-directory-no">03</span><span class="photo-directory-title">烘焙天赋觉醒</span><span class="photo-directory-arrow" aria-hidden="true">↗</span></button>
+        </li>
+        <li class="photo-directory-item" data-photo-index="3">
+          <button class="photo-directory-trigger" type="button" aria-expanded="false" aria-controls="photoStage"><span class="photo-directory-no">04</span><span class="photo-directory-title">电影感加载中</span><span class="photo-directory-arrow" aria-hidden="true">↗</span></button>
+        </li>
+        <li class="photo-directory-item" data-photo-index="4">
+          <button class="photo-directory-trigger" type="button" aria-expanded="false" aria-controls="photoStage"><span class="photo-directory-no">05</span><span class="photo-directory-title">今日限定皮肤</span><span class="photo-directory-arrow" aria-hidden="true">↗</span></button>
+        </li>
+        <li class="photo-directory-item" data-photo-index="5">
+          <button class="photo-directory-trigger" type="button" aria-expanded="false" aria-controls="photoStage"><span class="photo-directory-no">06</span><span class="photo-directory-title">学姐，毕业快乐</span><span class="photo-directory-arrow" aria-hidden="true">↗</span></button>
+        </li>
+        <li class="photo-directory-item" data-photo-index="6">
+          <button class="photo-directory-trigger" type="button" aria-expanded="false" aria-controls="photoStage"><span class="photo-directory-no">07</span><span class="photo-directory-title">新宣，正式交棒</span><span class="photo-directory-arrow" aria-hidden="true">↗</span></button>
+        </li>
+        <li class="photo-directory-item" data-photo-index="7">
+          <button class="photo-directory-trigger" type="button" aria-expanded="false" aria-controls="photoStage"><span class="photo-directory-no">08</span><span class="photo-directory-title">二十岁，许个愿</span><span class="photo-directory-arrow" aria-hidden="true">↗</span></button>
+        </li>
+        <li class="photo-directory-item" data-photo-index="8">
+          <button class="photo-directory-trigger" type="button" aria-expanded="false" aria-controls="photoStage"><span class="photo-directory-no">09</span><span class="photo-directory-title">还没说够谢谢</span><span class="photo-directory-arrow" aria-hidden="true">↗</span></button>
+        </li>
+        <li class="photo-directory-item" data-photo-index="9">
+          <button class="photo-directory-trigger" type="button" aria-expanded="false" aria-controls="photoStage"><span class="photo-directory-no">10</span><span class="photo-directory-title">十多年的老搭档</span><span class="photo-directory-arrow" aria-hidden="true">↗</span></button>
+        </li>
+        <li class="photo-directory-item" data-photo-index="10">
+          <button class="photo-directory-trigger" type="button" aria-expanded="false" aria-controls="photoStage"><span class="photo-directory-no">11</span><span class="photo-directory-title">去海边撒个野</span><span class="photo-directory-arrow" aria-hidden="true">↗</span></button>
+        </li>
+        <li class="photo-directory-item" data-photo-index="11">
+          <button class="photo-directory-trigger" type="button" aria-expanded="false" aria-controls="photoStage"><span class="photo-directory-no">12</span><span class="photo-directory-title">一些快乐存档</span><span class="photo-directory-arrow" aria-hidden="true">↗</span></button>
+        </li>
+      </ul>
+
+      <div class="photo-stage-home" id="photoStageHome">
+        <aside class="photo-stage" id="photoStage" aria-live="polite" aria-label="选中的照片">
+          <p class="photo-stage-hint">把鼠标移到一句话上<br><span>看看它藏着哪一张照片</span></p>
+          <figure class="photo-stage-card" data-photo-panel="0" hidden>
+            <img src="assets/images/about/me-bridge-smile.webp" alt="Beata 在夜晚的桥边笑着看向镜头" width="1100" height="1467" loading="lazy">
+            <figcaption>宣传小分队第一次一起出去野餐！这张是我们亲爱的雪花姐在世纪大桥拍的。谁懂啊，真的好喜欢，雪花姐请继续保持这个水平！！</figcaption>
+          </figure>
+          <figure class="photo-stage-card" data-photo-panel="1" hidden>
+            <img src="assets/images/about/me-eating.webp" alt="Beata 在餐厅吃东西，眼睛睁得很大" width="1100" height="1467" loading="lazy">
+            <figcaption>跟对象一起去吃好吃的披萨啦！至于表情管理什么的……不好意思，暂时不在我的考虑范围内。啊呜！</figcaption>
+          </figure>
+          <figure class="photo-stage-card" data-photo-panel="2" hidden>
+            <img src="assets/images/about/me-maid.webp" alt="Beata 穿着粉色围裙，举着巨大的纸板刀和叉" width="1100" height="1467" loading="lazy">
+            <figcaption>第一次尝试自己做小饼干，没想到味道还挺不错的诶！看来本小姐的技能树又悄悄点亮了一项，哈哈哈哈。</figcaption>
+          </figure>
+          <figure class="photo-stage-card" data-photo-panel="3" hidden>
+            <img src="assets/images/about/me-bridge-sit.webp" alt="Beata 坐在夜晚的桥边，看向旁边" width="1100" height="1467" loading="lazy">
+            <figcaption>还是那次野餐拍的！但这张真的好有故事感啊，感觉自己下一秒就要成为某部电影的女主角了。好吧，允许我自恋一下～</figcaption>
+          </figure>
+          <figure class="photo-stage-card" data-photo-panel="4" hidden>
+            <img src="assets/images/about/me-makeup.webp" alt="Beata 坐在化妆镜前，桌上是各种化妆品" width="1024" height="1366" loading="lazy">
+            <figcaption>第一次尝试亚裔妆！不得不说，化妆师老师真的有两把刷子，照镜子的时候都有点新鲜哈哈哈。原来我还可以是这种风格！</figcaption>
+          </figure>
+          <figure class="photo-stage-card" data-photo-panel="5" hidden>
+            <img src="assets/images/about/friends-graduation.webp" alt="Beata 和三位朋友在书架前合影，手里抱着花" width="1300" height="975" loading="lazy">
+            <figcaption>和学姐的毕业合照！明明知道毕业是件值得庆祝的事，可一想到以后不能经常见面，还是有点舍不得。学姐，要常回来看看我们呀。</figcaption>
+          </figure>
+          <figure class="photo-stage-card" data-photo-panel="6" hidden>
+            <img src="assets/images/about/friends-lecture.webp" alt="Beata 和三位朋友在报告厅里自拍" width="1300" height="975" loading="lazy">
+            <figcaption>换届啦，我们的新宣负责人之旅也正式画上句号。一起忙过的那些日子，就留在这里吧。辛苦啦，各位！这次真的可以下班咯。</figcaption>
+          </figure>
+          <figure class="photo-stage-card" data-photo-panel="7" hidden>
+            <img src="assets/images/about/friends-dinner.webp" alt="Beata 和四位朋友在餐厅围着蛋糕合影" width="1300" height="974" loading="lazy">
+            <figcaption>我的二十岁生日！另外两位新宣小伙伴，还有学长学姐都来陪我过生日。呜呜呜，原来被这么多人惦记着，是这么幸福的一件事呀。</figcaption>
+          </figure>
+          <figure class="photo-stage-card" data-photo-panel="8" hidden>
+            <img src="assets/images/about/friends-southgate.webp" alt="Beata 和学长学姐在南门前的毕业合影" width="1300" height="976" loading="lazy">
+            <figcaption>学长学姐毕业啦。其实一直都很感谢你们，教会了我好多东西，也给了我好多鼓励。总觉得还有好多话没来得及说，怎么就要毕业了呢。</figcaption>
+          </figure>
+          <figure class="photo-stage-card" data-photo-panel="9" hidden>
+            <img src="assets/images/about/friends-festival.webp" alt="Beata 和朋友穿着雨衣在音乐节现场自拍" width="1300" height="975" loading="lazy">
+            <figcaption>陪认识十多年的好朋友去看华晨宇演唱会！虽然下着雨，但完全不影响我们的快乐。认识这么多年了，居然还有这么多新鲜事可以一起做！</figcaption>
+          </figure>
+          <figure class="photo-stage-card" data-photo-panel="10" hidden>
+            <img src="assets/images/about/friends-beach.webp" alt="Beata 和三位朋友在海边自拍" width="1300" height="867" loading="lazy">
+            <figcaption>趁着亚沙会的间隙，和几个好朋友一起跑去三亚看海啦！那会儿什么也不用多想，只觉得整个人都自由得不得了。啊啊啊，好喜欢！</figcaption>
+          </figure>
+          <figure class="photo-stage-card" data-photo-panel="11" hidden>
+            <img src="assets/images/about/friends-collage.webp" alt="Beata 和朋友的夏天照片拼图" width="1100" height="1954" loading="lazy">
+            <figcaption>上面是和智毅小姐一起看毕业晚会，下面是出去玩回来跟舒怡小可爱在车上拍的。翻到这里才发现，原来好多快乐都藏在这些小瞬间里。</figcaption>
+          </figure>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 🌙 夜间板块 ===================== -->
+<section class="sec only-night" id="night-side">
+  <!-- 一页摊开的夜间日记：左边标题和月亮猫停在原地，右边是碎碎念 -->
+  <div class="wrap diary-wrap">
+    <div class="diary-side">
+      <div class="sec-head">
+        <p class="sec-label">only after dark</p>
+        <h2 class="sec-title">有些话，<br>我通常不会先说</h2>
+        <p class="sec-sub">如果认识久一点，大概就会慢慢发现。</p>
+      </div>
+      <img class="diary-moon" src="assets/images/deco/deco-moon-cat.webp" alt="" aria-hidden="true" width="1024" height="1536" loading="lazy">
+    </div>
+
+    <div class="diary-main">
+    <!-- 像一页深夜碎碎念：想到一段写一段，组内挨着，组间空一点 -->
+    <div class="diary" id="diary">
+      <div class="diary-group">
+        <p>有时候我好像还挺擅长察言观色的。</p>
+        <p>别人突然不说话了，我会想是不是发生了什么；别人心情不好，我会忍不住猜，是不是最近太累了，或者遇到了什么不顺心的事。</p>
+      </div>
+      <div class="diary-group">
+        <p>但轮到自己的时候，好像就没那么宽容了。</p>
+        <p>做得不够好，会觉得是不是自己能力不行；事情没处理好，第一反应经常是「我怎么又这样」。</p>
+      </div>
+      <div class="diary-group">
+        <p>我有时候觉得自己挺矛盾的。一边希望别人能够理解我，一边又不太习惯把自己的心情讲出来。</p>
+        <p>明明也会委屈，也会难过，甚至偶尔还挺需要别人哄一哄的，但真的有人问起来，又会条件反射地说一句：没事啦。</p>
+      </div>
+      <div class="diary-group">
+        <p>不过，最近好像有在慢慢改了。</p>
+        <p>我开始觉得，没必要每次都表现得很懂事，也不用什么事情都自己消化。偶尔笨拙一点、任性一点，好像也没什么关系。</p>
+        <p>毕竟我也还在长大嘛。</p>
+      </div>
+      <p class="diary-end">有些事情，白天忙着生活，晚上才有空慢慢想。就先写到这里吧。</p>
+    </div>
+
+    <div class="diary-more">
+      <a class="link-more" href="writing.html">去看那些写下来的 <span aria-hidden="true">→</span></a>
+    </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-lead">
+        <p class="sec-label foot-kicker">NEXT STOP ✿</p>
+        <p class="foot-big">好啦，<span class="nb">关于我的碎碎念</span>就先到这里！</p>
+        <p class="foot-note">光说自己是什么样的人，好像还不太够。要不带你看看，我这些年都跑去<span class="nb">做了些什么</span>？</p>
+        <p class="foot-cta"><a class="btn btn--primary" href="projects.html">我的足迹 <span aria-hidden="true">↗</span></a></p>
+      </div>
+      <div class="foot-secondary">
+        <span class="foot-secondary-label">也可以逛逛</span>
+        <a class="foot-link" href="fragments.html">生活碎片</a>
+        <a class="foot-link" href="writing.html">我的文字</a>
+        <a class="foot-link" href="index.html">回到首页</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Made with ♡ by Beata</span>
+      <a class="foot-hint" href="#siteHead">回到故事开头 ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js?v=20261103z"></script>
+<script src="assets/js/motion.js"></script>
+<script src="assets/js/about.js?v=20261104c"></script>
+</body>
+</html>
